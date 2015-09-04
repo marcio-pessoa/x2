@@ -1,0 +1,34 @@
+CHANGELOG - x2 - 2 axis platform - Change log file
+
+2015-06-07
+        * standby_handler
+        Added standby support
+
+2015-01-21
+        * command_power
+        fixed information presentation via serial console.
+
+2015-01-09
+        * handlers.ino and commands.ino
+        I separated the main sketch file into 2 new ones to maintain code.
+        clear and to grow up.
+
+2014-12-02
+        * command_delay
+        added command_delay() to set axis delay.
+
+2014-11-27
+        * command_demo
+        added this command to demonstration and mechanic test purposes.
+
+2014-11-22
+        Fully functional version.
+
+201x-xx-xx
+        Grow a lot...
+
+2012-08-11
+        Experimental firmware version.
+
+2006-xx-xx
+        Hardware is almost done.

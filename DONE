@@ -1,0 +1,38 @@
+DONE - x2 - 2 axis platform - Done list file
+
+Mechanics
+
+Electronics
+  * External sensor cabling
+  * Mudar cabeamento do sensor para passar junto com o cabeamento do eixo y. Para tanto dever ser usado os fios de um motor de passo queimado. Seria interessante comprar um driver de motor de passo adicional para testes.
+  * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+    * Build technical specification
+    * Buy
+
+Software
+  2015-06-07
+  * Power
+    * Auto power off
+      * Timeout 5 minutos
+        1. Turn off step motors
+        2. Turn off laser
+        3. Turn off relay
+        * A definição do objeto standby pela classe Timer aceita como valor de entrada 10 * 1000, porém não aceita um valor como 300 * 1000. Isso precisa ser investigado e corrigido.
+      * command_relay
+        * park
+        * recolher eixo y para posição 450
+  * Presentation
+    * Definir padrão para retorno dos comandos
+  2014-11-27
+  * command_random
+    * Inicia a geração de posições aleatórias para os eixos x e y
+  2014-11-21
+  * Sistema de proteção do driver do motor de passo pelo aumento da temperatura
+  * Notification
+    * Melhorar a notificação por leds.
+      * Na função notification_handler deve haver somente:
+        ok_led.blink();
+        warning_led.blink();
+        critical_led.blink();
+      * Ẽm algum outro lugar a frequencia de blink dos leds deve ser altarada.
+      * Em algum outro lugar os leds devem ser habilitados ou desabilitados.
