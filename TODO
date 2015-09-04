@@ -1,0 +1,16 @@
+TODO - x2 - 2 axis platform - To do list file
+
+Mechanics
+  * Estabilizar eixo y
+  * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+    * Build support
+
+Electronics
+  * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+    * Delivery
+    * Cabling
+
+Software
+  * Power
+    * Auto power on
+      * Turn on relay automaticaly before move motors
