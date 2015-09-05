@@ -135,8 +135,24 @@ void command_reset() {
 }
 
 void command_laser() {
-  if (digitalRead(power_sensor_pin)) {
-    laser.set(!laser.status());
+  char *arg;
+  // Get command argument
+  arg = CLI.next();
+  // Turn On
+  if (strcmp(arg, "on") == false) {
+    laser.on();
+  }
+  else if (strcmp(arg, "off") == false) {
+    laser.off();
+  }
+  else {
+    Serial.print("Laser: ");
+    if (laser.status()) {
+      Serial.println("On");
+    }
+    else {
+      Serial.println("Off");
+    }
   }
 }
 

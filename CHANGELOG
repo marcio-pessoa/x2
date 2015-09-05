@@ -1,5 +1,9 @@
 CHANGELOG - x2 - 2 axis platform - Change log file
 
+2015-09-05
+        * command_laser
+        Added On and Off options on laser command.
+
 2015-06-07
         * standby_handler
         Added standby support
