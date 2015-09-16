@@ -7,7 +7,6 @@
  * Contributors: none
  */
 
-// Library load
 #include <Arduino.h>         // Arduino - Main library
 #include <Project.h>         // Sciemon - Basic project definitions
 #include <Help.h>            // Sciemon - Help messages builder
@@ -26,15 +25,15 @@
 #include <MemoryFree.h>      // 
 
 // Project definitions
-Project x2("x2", // Platform
-           "I", // Mark
-           "0.10b", // Version
-           "2015-08-15", // Version date
-           "1", // Serial number
-           "Copyright (c) 2012-2015 Marcio Pessoa", // Owner
-           "undefined. There is NO WARRANTY.", // License
-           "http://pessoa.eti.br/", // Website
-           "Marcio Pessoa <marcio@pessoa.eti.br>"); // Contact
+Project x2("x2",  // Platform
+           "I",  // Mark
+           "0.10b",  // Version
+           "2015-08-15",  // Version date
+           "1",  // Serial number
+           "Copyright (c) 2012-2015 Marcio Pessoa",  // Owner
+           "undefined. There is NO WARRANTY.",  // License
+           "http://pessoa.eti.br/",  // Website
+           "Marcio Pessoa <marcio@pessoa.eti.br>");  // Contact
 
 // OK LED (Status LED)
 Blinker ok_led(led_ok_pin);

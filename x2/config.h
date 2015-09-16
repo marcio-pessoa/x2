@@ -36,9 +36,9 @@ const byte laser_pin = X2_INTERFACE_D0;
 const byte random_Seed_pin = lm35_pin;
 
 // Timers
-const byte health_check_timer = 2; // seconds
-const byte sensors_timer = 2; // seconds
-const unsigned long standby_timer = 5; // minutes
+const byte health_check_timer = 2;  // seconds
+const byte sensors_timer = 2;  // seconds
+const unsigned long standby_timer = 5;  // minutes
 
 // Serial speed: 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200
 const unsigned long serial_speed = 57600;

@@ -82,11 +82,11 @@ void standby_handler() {
 void demonstration_handler() {
   if (demonstration) {
     if (x_axis.isDone()) {
-      x_axis.positionWrite(random(-800, 800));
+      x_axis.positionWrite(random(x_axis.hardMinimumRead, x_axis.hardMaxiumRead));
       //~ x_axis.delayWrite(random(2 ,10));
     }
     if (y_axis.isDone()) {
-      y_axis.positionWrite(random(-460, 400));
+      y_axis.positionWrite(random(y_axis.hardMinimumRead, y_axis.hardMaxiumRead));
       //~ y_axis.delayWrite(random(2 ,10));
     }
   }
