@@ -19,7 +19,7 @@ void counter() {
 }
 
 void x_stepperCalibrate(bool debug = true) {
-  int x;
+  int x = 0;
   x_axis.delayWrite(2);
   if (debug) Serial.print(".");
   // Go to limit
@@ -39,7 +39,7 @@ void x_stepperCalibrate(bool debug = true) {
 }
 
 void y_stepperCalibrate(bool debug = true) {
-  int y;
+  int y = 0;
   y_axis.delayWrite(2);
   if (debug) Serial.print(".");
   // Go to limit
@@ -59,10 +59,10 @@ void y_stepperCalibrate(bool debug = true) {
 }
 
 void xy_stepperCalibrate(bool debug = true) {
-  int i;
   int axis_delay = 2;
   if (debug) Serial.print(".");
   // Go to limit
+  int i = 0;
   for (i=0; i<=1800; i++) {
     if (i <= 1800) {
       x_stepper.step(1, BACKWARD, INTERLEAVE);

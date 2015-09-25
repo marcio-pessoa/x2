@@ -91,11 +91,9 @@ void commands() {
 }
 
 void command_power() {
-  char *arg;
-  bool change = false;
   bool ok = false;
-  // Get command argument
-  arg = CLI.next();
+  bool change = false;
+  char *arg = CLI.next();
   // Turn On
   if (strcmp(arg, "on") == false) {
     ok = true;
@@ -135,9 +133,7 @@ void command_reset() {
 }
 
 void command_laser() {
-  char *arg;
-  // Get command argument
-  arg = CLI.next();
+  char *arg = CLI.next();
   // Turn On
   if (strcmp(arg, "on") == false) {
     laser.on();
@@ -157,48 +153,48 @@ void command_laser() {
 }
 
 void command_goto_absolute() {
-  int x, y;
-  char *arg; 
-  arg = CLI.next(); 
+  int x = 0;
+  int y = 0;
+  char *arg = CLI.next();
   if (arg != NULL) {
-    x=atoi(arg);
-  } 
-  arg = CLI.next(); 
+    x = atoi(arg);
+    x_axis.positionWrite(x);
+  }
+  arg = CLI.next();
   if (arg != NULL) {
-    y=atol(arg); 
+    y = atoi(arg);
+    y_axis.positionWrite(y);
   } 
-  x_axis.positionWrite(x);
-  y_axis.positionWrite(y);
 }
 
 void command_goto_relative() {
-  int x, y;
-  char *arg; 
-  arg = CLI.next(); 
+  int x = 0;
+  int y = 0;
+  char *arg = CLI.next();
   if (arg != NULL) {
-    x=atoi(arg);
-  } 
-  arg = CLI.next(); 
+    x = atoi(arg);
+    x_axis.positionWrite(x_axis.positionRead() + x);
+  }
+  arg = CLI.next();
   if (arg != NULL) {
-    y=atol(arg); 
+    y = atoi(arg);
+    y_axis.positionWrite(y_axis.positionRead() + y);
   } 
-  x_axis.positionWrite(x_axis.positionRead() + x);
-  y_axis.positionWrite(y_axis.positionRead() + y);
 }
 
 void command_delay() {
-  int x, y;
-  char *arg; 
-  arg = CLI.next(); 
+  int x = 0;
+  int y = 0;
+  char *arg = CLI.next();
   if (arg != NULL) {
-    x=atoi(arg);
-  } 
-  arg = CLI.next(); 
+    x = atoi(arg);
+    x_axis.delayWrite(x);
+  }
+  arg = CLI.next();
   if (arg != NULL) {
-    y=atol(arg); 
+    y = atoi(arg);
+    y_axis.delayWrite(y);
   } 
-  x_axis.delayWrite(x);
-  y_axis.delayWrite(y);
 }
 
 void command_park() {
@@ -295,7 +291,8 @@ void command_mem() {
   memory.unitWrite("%");
   memory.check(percent);
   // 
-  Serial.println(memory.nameRead() + " (" + memory.status_name() + "): " + percent + memory.unitRead() + " used");
+  Serial.println(memory.nameRead() + " (" + memory.status_name() + "): " + 
+                 percent + memory.unitRead() + " used");
   if (debug) {
     Serial.println("  SRAM:\t" + String(total) + " B\n" +
                    "  Used:\t" + used + " B\n" +
@@ -335,4 +332,9 @@ void command_help() {
 
 void command_unknown() {
   Serial.println(F("Error: unknown command")); 
+}
+
+void command_detach() {
+  x_stepper.release();
+  y_stepper.release();
 }

@@ -30,7 +30,7 @@ Software
   * Sistema de proteção do driver do motor de passo pelo aumento da temperatura
   * Notification
     * Melhorar a notificação por leds.
-      * Na função notification_handler deve haver somente:
+      * Na função NotificationHandler deve haver somente:
         ok_led.blink();
         warning_led.blink();
         critical_led.blink();

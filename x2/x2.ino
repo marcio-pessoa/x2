@@ -28,7 +28,7 @@
 Project x2("x2",  // Platform
            "I",  // Mark
            "0.10b",  // Version
-           "2015-08-15",  // Version date
+           "2015-09-24",  // Version date
            "1",  // Serial number
            "Copyright (c) 2012-2015 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
@@ -69,23 +69,35 @@ Ultrasonic HC_SR04;
 String distance = "Distance";
 
 // Axis
-Axis x_axis("x", 2, -800, 800, -800, 800,   0, 2);
-Axis y_axis("y", 1, -500, 400, -500, 400,   0, 2);
+Axis x_axis("x",   // Name
+            2,     // Electronic identifier
+            -800,  // Minimum hard position
+            800,   // Maximum hard position
+            -800,  // Minimum soft position
+            800,   // Maximum soft position
+            0,     // Park position
+            2);    // Move delay
+Axis y_axis("y",   // Name
+            1,     // Electronic identifier
+            -500,  // Minimum hard position
+            400,   // Maximum hard position
+            -500,  // Minimum soft position
+            400,   // Maximum soft position
+            0,     // Park position
+            2);    // Move delay
 
 // Step motors
 AF_Stepper x_stepper(200, x_axis.pinRead());
 AF_Stepper y_stepper(200, y_axis.pinRead());
 
 // Power save options
-Timer standby(standby_timer * 60 * 1000, COUNTDOWN);
+Timer standby((unsigned long)standby_timer * 60 * 1000, COUNTDOWN);
 bool standby_status = false;
 bool standby_done = false;
 
 // CLI - Command Line Interface
 SerialCommand CLI;
 Help help_main;
-bool debug = false;
-bool demonstration = false;
 
 void setup() {
   // Serial interface
@@ -121,11 +133,11 @@ void setup() {
 }
 
 void loop() {
-  sensors_handler();
-  health_check_handler();
-  notification_handler();
-  axes_handler();
-  demonstration_handler();
+  SensorsHandler();
+  HealthCheckHandler();
+  NotificationHandler();
+  AxesHandler();
+  DemonstrationHandler();
+  PowerHandler();
   CLI.readSerial();
-  standby_handler();
 }
