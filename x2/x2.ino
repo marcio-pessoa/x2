@@ -1,4 +1,4 @@
-/* x2.ino - x2 - 2 axis platform - Arduino main sketch file
+/* x2.ino, x2 Mark I - Two Axes Platform, Arduino main sketch file
  * 
  * This sketch was developed and tested on: Arduino Uno
  * To work on other Arduino models, some adaptations may be necessary.
@@ -27,8 +27,9 @@
 // Project definitions
 Project x2("x2",  // Platform
            "I",  // Mark
+           "Two Axes Platform",  // Name
            "0.10b",  // Version
-           "2015-09-24",  // Version date
+           "2015-10-15",  // Version date
            "1",  // Serial number
            "Copyright (c) 2012-2015 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
@@ -49,17 +50,24 @@ Switch power(power_relay_pin, LOW);
 
 // Fan
 Fan fan_control(fan_control_pin, fan_sensor_pin);
-Alarm fan(85, 95);
+Alarm fan(85,   // Warning
+          95);  // Critical
 
 // Teperature sensor
 Temperature lm35;
-Alarm temperature(60, 70, 10, 5);
+Alarm temperature(60,   // Maximum warning
+                  70,   // Maximum critical
+                  10,   // Minimum warning
+                   5);  // Minimum critical
 
 // Check timer
 Timer health_check(health_check_timer * 1000);
 
 // Sensors timer
 Timer sensors_status(sensors_timer * 1000);
+
+// Demonstration timer
+Timer demonstration_period(0, COUNTDOWN);
 
 // Laser
 Switch laser(laser_pin);
@@ -77,6 +85,7 @@ Axis x_axis("x",   // Name
             800,   // Maximum soft position
             0,     // Park position
             2);    // Move delay
+AF_Stepper x_stepper(200, x_axis.pinRead());
 Axis y_axis("y",   // Name
             1,     // Electronic identifier
             -500,  // Minimum hard position
@@ -85,9 +94,6 @@ Axis y_axis("y",   // Name
             400,   // Maximum soft position
             0,     // Park position
             2);    // Move delay
-
-// Step motors
-AF_Stepper x_stepper(200, x_axis.pinRead());
 AF_Stepper y_stepper(200, y_axis.pinRead());
 
 // Power save options
@@ -103,11 +109,8 @@ void setup() {
   // Serial interface
   Serial.begin(serial_speed);
   // Start up message
-  Serial.println(x2.version());
-  Serial.println(x2.owner());
-  Serial.println(x2.license());
-  Serial.println(x2.website());
-  Serial.println(x2.contact());
+  Serial.println("Starting...");
+  command_version();
   // Power relay
   power.nameWrite("Power relay");
   // Power supply DC detection
@@ -130,6 +133,8 @@ void setup() {
   randomSeed(analogRead(random_Seed_pin));
   // Setup callbacks for commands
   commands();
+  // Prompt
+  Serial.println("Ready.\n");
 }
 
 void loop() {

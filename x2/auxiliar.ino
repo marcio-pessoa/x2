@@ -1,4 +1,4 @@
-/* auxiliar.ino - x2 - 2 axis platform - Arduino auxiliar sketch file
+/* auxiliar.ino, x2 Mark I - Two Axes Platform, Arduino auxiliar sketch file
  * 
  * Author: Márcio Pessoa <marcio@pessoa.eti.br>
  * Contributors: none

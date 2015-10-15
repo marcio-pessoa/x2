@@ -1,4 +1,4 @@
-/* config.h - x2 - 2 axis platform - Arduino project config file
+/* config.h, x2 Mark I - Two Axes Platform, Arduino project config file
  * 
  * Author: Márcio Pessoa <marcio@pessoa.eti.br>
  * Contributors: none
@@ -42,9 +42,6 @@ const byte standby_timer = 5;  // minutes
 
 // Debug mode
 bool debug = false;
-
-// Demonstration mode
-bool demonstration = false;
 
 // Serial speed: 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200
 const unsigned long serial_speed = 57600;

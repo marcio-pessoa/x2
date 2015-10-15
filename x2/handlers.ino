@@ -1,4 +1,4 @@
-/* handlers.ino - x2 - 2 axis platform - Arduino handlers sketch file
+/* handlers.ino, x2 Mark I - Two Axes Platform, Arduino handlers sketch file
  * 
  * Author: Márcio Pessoa <marcio@pessoa.eti.br>
  * Contributors: none
@@ -49,14 +49,12 @@ bool AxesHandler() {
 }
 
 void DemonstrationHandler() {
-  if (demonstration) {
+  if(!demonstration_period.check()) {
     if (x_axis.isDone()) {
       x_axis.positionWrite(random(x_axis.hardMinimumRead(), x_axis.hardMaxiumRead()));
-      //~ x_axis.delayWrite(random(2 ,10));
     }
     if (y_axis.isDone()) {
       y_axis.positionWrite(random(y_axis.hardMinimumRead(), y_axis.hardMaxiumRead()));
-      //~ y_axis.delayWrite(random(2 ,10));
     }
   }
 }
@@ -64,8 +62,8 @@ void DemonstrationHandler() {
 void HealthCheckHandler() {
   if (health_check.check()) {
     // Set fan speed
-    fan_control.writeSpeed(map(constrain(temperature.valueRead(), 20, 40),  // temperature
-                               20, 40,    // From (minimum and maximum)
+    fan_control.writeSpeed(map(constrain(temperature.valueRead(), 20, 50),  // temperature
+                               20, 50,    // From (minimum and maximum)
                                0, 100));  // To (minimum and maximum)
     // Power off on high temperature
     if (temperature.status() == CRITICAL) {

@@ -1,4 +1,4 @@
-/* commands.ino - x2 - 2 axis platform - Arduino commands sketch file
+/* commands.ino, x2 Mark I - Two Axes Platform, Arduino commands sketch file
  * 
  * Author: Márcio Pessoa <marcio@pessoa.eti.br>
  * Contributors: none
@@ -84,10 +84,6 @@ void commands() {
    * Default
    */
   CLI.addDefaultHandler(command_unknown);
-  /*
-   * Prompt
-   */
-  Serial.println("Ready.");
 }
 
 void command_power() {
@@ -198,6 +194,8 @@ void command_delay() {
 }
 
 void command_park() {
+  x_axis.delayWrite(2);
+  y_axis.delayWrite(2);
   x_axis.positionWrite(x_axis.parkRead());
   y_axis.positionWrite(y_axis.parkRead());
   x_stepper.release();
@@ -205,26 +203,25 @@ void command_park() {
 }
 
 void command_stop() {
-  if (demonstration) {
-    command_demo();
-  }
+  demonstration_period.set(0);
   x_axis.positionWrite(x_axis.positionRead());
   y_axis.positionWrite(y_axis.positionRead());
 }
 
 void command_demo() {
-  demonstration = !demonstration;
-  if (debug) {
-    Serial.println("Demonstration mode: " + String(demonstration ? "On" : "Off"));
+  char *arg = CLI.next();
+  unsigned int seconds = atoi(arg);
+  if (seconds > 0) {
+    demonstration_period.set(seconds * 1000);
   }
 }
 
 void command_calibrate() {
   if (digitalRead(power_sensor_pin)) {
-    Serial.print("Calibrating");
+    Serial.print(F("Calibrating"));
     laser.off();
     xy_stepperCalibrate(true);
-    Serial.println(" Done.");
+    Serial.println(F(" Done."));
   }
 }
 
@@ -313,7 +310,7 @@ void command_info() {
 
 void command_version() {
   Serial.println(x2.version());
-  if (debug) {
+  if (debug or (millis() < 100)) {
     Serial.println(x2.owner());
     Serial.println(x2.license());
     Serial.println(x2.website());
