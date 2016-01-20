@@ -43,6 +43,34 @@ x2 interface pin designation table for Deep viewer
 ║  4 ║ 4               ║ GND                                                  ║
 ╚════╩═════════════════╩══════════════════════════════════════════════════════╝
 
+                                      +-----+
+         +----[PWR]-------------------| USB |--+
+         |                            +-----+  |
+         |         GND/RST2  [ ][ ]            |
+         |       MOSI2/SCK2  [ ][ ]  A5/SCL[ ] |   C5 
+         |          5V/MISO2 [ ][ ]  A4/SDA[ ] |   C4 
+         |                             AREF[ ] |
+         |                              GND[x] |
+         | [ ]N/C                    SCK/13[x] |   B5
+         | [ ]v.ref                 MISO/12[x] |   .
+         | [ ]RST                   MOSI/11[x]~|   .
+         | [ ]3V3    +---+               10[x]~|   .
+         | [x]5v     | A |                9[x]~|   .
+         | [x]GND   -| R |-               8[x] |   B0
+         | [x]GND   -| D |-                    |
+         | [x]Vin   -| U |-               7[x] |   D7
+         |          -| I |-               6[x]~|   .
+         | [x]A0    -| N |-               5[x]~|   .
+         | [x]A1    -| O |-               4[x] |   .
+         | [x]A2     +---+           INT1/3[x]~|   .
+         | [x]A3                     INT0/2[x] |   .
+         | [x]A4/SDA  RST SCK MISO     TX>1[x] |   .
+         | [x]A5/SCL  [ ] [ ] [ ]      RX<0[x] |   D0
+         |            [ ] [ ] [ ]              |
+         |  UNO_R3    GND MOSI 5V  ____________/
+          \_______________________/
+                                Source: http://busyducks.com/ascii-art-arduinos
+
 4. Software
 
 4.1 Command line interface

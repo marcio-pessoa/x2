@@ -14,3 +14,7 @@ Software
   * Power
     * Auto power on
       * Turn on relay automaticaly before move motors
+  * Soft Limits
+    * Quando 0 comando "r" determinar que um eixo se mova para além de um soft
+      limit, deverá aparecer uma mensagem na tela:
+      Soft limit (Warning): Maximum limit exceeded on axis 1

@@ -15,12 +15,12 @@ bool AxesHandler() {
   // Move x axis
   switch (x_axis.positionReadRelative()) {
     case 1: {
-      standby.reset();
+      //~ standby.reset();
       x_stepper.step(1, FORWARD, INTERLEAVE);
       break;
     }
     case -1: {
-      standby.reset();
+      //~ standby.reset();
       x_stepper.step(1, BACKWARD, INTERLEAVE);
       break;
     }
@@ -32,12 +32,12 @@ bool AxesHandler() {
   // Move y axis
   switch (y_axis.positionReadRelative()) {
     case 1: {
-      standby.reset();
+      //~ standby.reset();
       y_stepper.step(1, FORWARD, INTERLEAVE);
       break;
     }
     case -1: {
-      standby.reset();
+      //~ standby.reset();
       y_stepper.step(1, BACKWARD, INTERLEAVE);
       break;
     }
@@ -140,6 +140,7 @@ void PowerHandler() {
     }
     if (isAllDone() and !standby_done) {
       standby_done = true;
+      standby_status = false;
       power.set(LOW);
       Serial.println("Done.");
     }
