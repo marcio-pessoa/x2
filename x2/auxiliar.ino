@@ -14,7 +14,7 @@ bool isAllDone() {
   }
 }
 
-void counter() {
+void spinCounter() {
   fan_control.counter();
 }
 

@@ -29,9 +29,9 @@ Project x2("x2",  // Platform
            "I",  // Mark
            "Two Axes Platform",  // Name
            "0.10b",  // Version
-           "2015-10-15",  // Version date
+           "2016-03-12",  // Version date
            "1",  // Serial number
-           "Copyright (c) 2012-2015 Marcio Pessoa",  // Owner
+           "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
            "http://pessoa.eti.br/",  // Website
            "Marcio Pessoa <marcio@pessoa.eti.br>");  // Contact
@@ -122,7 +122,7 @@ void setup() {
   temperature.nameWrite("Temperature");
   // Fan
   fan_control.writeSpeed(100);
-  attachInterrupt(fan_sensor_pin, counter, RISING);
+  attachInterrupt(fan_sensor_pin, spinCounter, RISING);
   fan.force_check(OK);
   fan.nameWrite("Fan");
   fan.unitWrite("%");
@@ -134,7 +134,7 @@ void setup() {
   // Setup callbacks for commands
   commands();
   // Prompt
-  Serial.println("Ready.\n");
+  Serial.println(F("Ready.\n"));
 }
 
 void loop() {

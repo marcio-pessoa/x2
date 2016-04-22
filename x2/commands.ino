@@ -9,7 +9,7 @@ void commands() {
    * Power Management
    */
   // Power Management
-  help_main.sectionAdd("Check user manual for commands.");
+  help_main.sectionAdd("Check user manual.");
   //~ help_main.sectionAdd("Power management");
   // power
   CLI.addCommand("power", command_power);
@@ -17,7 +17,7 @@ void commands() {
   // reset
   CLI.addCommand("reset", command_reset);
   //~ help_main.commandAdd("reset", F("reset system"));
-  // attach
+  // laser
   CLI.addCommand("laser", command_laser);
   //~ help_main.commandAdd("laser", F("laser LED"));
   /*
@@ -43,7 +43,7 @@ void commands() {
   CLI.addCommand("demo", command_demo);
   //~ help_main.commandAdd("demo", "demonstration mode");
   // gage
-  CLI.addCommand("gage", command_calibrate);
+  CLI.addCommand("gage", command_gage);
   //~ help_main.commandAdd("gage", "calibrate axes");
   /*
    * Information
@@ -55,6 +55,9 @@ void commands() {
   // axes
   CLI.addCommand("axes", command_axes);
   //~ help_main.commandAdd("axes", F("axes position"));
+  // isdone
+  CLI.addCommand("isdone", command_isdone);
+  //~ help_main.commandAdd("isdone", "all are moves done?");
   // read
   CLI.addCommand("read", command_ultrasonic);
   //~ help_main.commandAdd("read", F("measure distance"));
@@ -149,47 +152,47 @@ void command_laser() {
 }
 
 void command_goto_absolute() {
-  int x = 0;
-  int y = 0;
+  // int x = 0;
+  // int y = 0;
   char *arg = CLI.next();
   if (arg != NULL) {
-    x = atoi(arg);
-    x_axis.positionWrite(x);
+    // x = atoi(arg);
+    x_axis.positionWrite(atoi(arg));
   }
   arg = CLI.next();
   if (arg != NULL) {
-    y = atoi(arg);
-    y_axis.positionWrite(y);
+    // y = atoi(arg);
+    y_axis.positionWrite(atoi(arg));
   } 
 }
 
 void command_goto_relative() {
-  int x = 0;
-  int y = 0;
+  // int x = 0;
+  // int y = 0;
   char *arg = CLI.next();
   if (arg != NULL) {
-    x = atoi(arg);
-    x_axis.positionWrite(x_axis.positionRead() + x);
+    // x = atoi(arg);
+    x_axis.positionWrite(x_axis.positionRead() + atoi(arg));
   }
   arg = CLI.next();
   if (arg != NULL) {
-    y = atoi(arg);
-    y_axis.positionWrite(y_axis.positionRead() + y);
+    // y = atoi(arg);
+    y_axis.positionWrite(y_axis.positionRead() + atoi(arg));
   } 
 }
 
 void command_delay() {
-  int x = 0;
-  int y = 0;
+  // int x = 0;
+  // int y = 0;
   char *arg = CLI.next();
   if (arg != NULL) {
-    x = atoi(arg);
-    x_axis.delayWrite(x);
+    // x = atoi(arg);
+    x_axis.delayWrite(atoi(arg));
   }
   arg = CLI.next();
   if (arg != NULL) {
-    y = atoi(arg);
-    y_axis.delayWrite(y);
+    // y = atoi(arg);
+    y_axis.delayWrite(atoi(arg));
   } 
 }
 
@@ -216,7 +219,7 @@ void command_demo() {
   }
 }
 
-void command_calibrate() {
+void command_gage() {
   if (digitalRead(power_sensor_pin)) {
     Serial.print(F("Calibrating"));
     laser.off();
@@ -306,6 +309,15 @@ void command_info() {
   command_temperature();
   command_fan();
   command_axes();
+}
+
+void command_isdone() {
+  if (isAllDone()) {
+    Serial.println("Move (OK): Done");
+  }
+  else {
+    Serial.println("Move (Pending): On going");
+  }
 }
 
 void command_version() {

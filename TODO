@@ -1,20 +1,15 @@
 TODO, x2 Mark I - Two Axes Platform, To do list file
 
 Mechanics
-  * Estabilizar eixo y
   * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
     * Build support
 
 Electronics
   * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-    * Delivery
     * Cabling
 
 Software
   * Power
-    * Auto power on
-      * Turn on relay automaticaly before move motors
+    * Transformar command_power num handle, pois mesmo com tantos testes o command power ainda apresenta comportamento inadequado.
   * Soft Limits
-    * Quando 0 comando "r" determinar que um eixo se mova para além de um soft
-      limit, deverá aparecer uma mensagem na tela:
-      Soft limit (Warning): Maximum limit exceeded on axis 1
+    * Quando 0 comando "r" determinar que um eixo se mova para além de um soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning): Maximum limit exceeded on axis 1
