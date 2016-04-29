@@ -1,6 +1,6 @@
 /* config.h, x2 Mark I - Two Axes Platform, Arduino project config file
  * 
- * Author: Márcio Pessoa <marcio@pessoa.eti.br>
+ * Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
  * Contributors: none
  */
 

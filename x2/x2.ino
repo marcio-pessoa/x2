@@ -3,7 +3,7 @@
  * This sketch was developed and tested on: Arduino Uno
  * To work on other Arduino models, some adaptations may be necessary.
  * 
- * Author: Márcio Pessoa <marcio@pessoa.eti.br>
+ * Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
  * Contributors: none
  */
 
@@ -21,7 +21,6 @@
 #include <Infrared.h>        // Sciemon - Infrared distance sensor
 #include "config.h"          // Sciemon - Configuration
 #include <AFMotor.h>         // Adafruit - Motor Shield
-#include "SCommand.h"        // SerialCommand - Command line interface
 #include <MemoryFree.h>      // 
 
 // Project definitions
@@ -34,7 +33,7 @@ Project x2("x2",  // Platform
            "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
            "http://pessoa.eti.br/",  // Website
-           "Marcio Pessoa <marcio@pessoa.eti.br>");  // Contact
+           "Marcio Pessoa <marcio.pessoa@sciemon.com>");  // Contact
 
 // OK LED (Status LED)
 Blinker ok_led(led_ok_pin);
@@ -101,10 +100,6 @@ Timer standby((unsigned long)standby_timer * 60 * 1000, COUNTDOWN);
 bool standby_status = false;
 bool standby_done = false;
 
-// CLI - Command Line Interface
-SerialCommand CLI;
-Help help_main;
-
 void setup() {
   // Serial interface
   Serial.begin(serial_speed);
@@ -131,10 +126,8 @@ void setup() {
   // Random number generator seed
   pinMode(random_Seed_pin, INPUT);
   randomSeed(analogRead(random_Seed_pin));
-  // Setup callbacks for commands
-  commands();
-  // Prompt
-  Serial.println(F("Ready.\n"));
+  // G-code ready to receive commands
+  GcodeReady();
 }
 
 void loop() {
@@ -144,5 +137,5 @@ void loop() {
   AxesHandler();
   DemonstrationHandler();
   PowerHandler();
-  CLI.readSerial();
+  GcodeCheck();
 }
