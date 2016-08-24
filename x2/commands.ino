@@ -4,12 +4,12 @@
  * Contributors: none
  */
 
-/* command_M100
+/* CommandM100
  * 
  * Description
  *   Shows help messages.
  * 
- *   command_M100()
+ *   CommandM100()
  * 
  * Parameters
  *   letter: The command initial letter. It's used to display a specific help
@@ -19,59 +19,93 @@
  * Returns
  *   void
  */
-void command_M100(char letter = 0) {
+void CommandM100(char letter = 0) {
   if (letter == 'G' or letter == 0) {
-    echoln(F("G01\tAbolute moves"));  // Test: Pending
-    echoln(F("G02\tRelative moves"));  // Test: Pending
-    echoln(F("G03\tDelay between moves"));  // Test: Pending
-    echoln(F("G06\tDemonstratio mode"));  // Test: Pending
-    echoln(F("G28\tHome axes"));  // Test: OK
-    echoln(F("G132\tCalibrate axes"));  // Test: Pending
+    echoln(F("G01\Move axes"));
+    echoln(F("G03\tDelay between moves"));
+    echoln(F("G06\tDemonstratio mode"));
+    echoln(F("G28\tHome axes"));
+    echoln(F("G90\tAbsolute programming"));
+    echoln(F("G91\tIncremental programming"));
+    echoln(F("G132\tCalibrate axes"));
   }
   if (letter == 'M' or letter == 0) {
-    echoln(F("M17\tEnable/Power all stepper motors"));  // Test: Pending
-    echoln(F("M18\tDisable all stepper motors; same as M84"));  // Test: Pending
     echoln(F("M15\tSystem info"));  // Test: Pending
-    echoln(F("M80\tPower on"));  // Test: OK
-    echoln(F("M81\tPower off"));  // Test: OK
-    echoln(F("M82\tPower status"));  // Test: OK
-    echoln(F("M84\tLaser on"));  // Test: Pending
-    echoln(F("M84\tLaser off"));  // Test: Pending
+    echoln(F("M17\tAttach motors"));  // Test: Pending
+    echoln(F("M18\tDetach motors; same as M84"));  // Test: Pending
+    echoln(F("M70\tLaser status"));  // Test: Pending
+    echoln(F("M71\tLaser on"));
+    echoln(F("M72\tLaser off"));
+    echoln(F("M80\tPower status"));
+    echoln(F("M81\tPower on"));
+    echoln(F("M82\tPower off"));
     echoln(F("M86\tAxes information"));  // Test: Pending
     echoln(F("M87\tIs all done?"));  // Test: Pending
     echoln(F("M88\tDistance measure"));  // Test: Pending
     echoln(F("M89\tMemory information"));  // Test: Pending
     echoln(F("M90\tFan information"));  // Test: Pending
     echoln(F("M91\tTemperature information"));  // Test: Pending
-    echoln(F("M92\tVersion information"));  // Test: Pending
+    echoln(F("M92\tSystem information"));  // Test: Pending
     echoln(F("M99\tReset system"));  // Test: Pending
-    echoln(F("M100\tThis help message"));  // Test: Pending
+    echoln(F("M100\tThis help message"));
     echoln(F("M111\tDebug mode"));  // Test: Pending
-    echoln(F("M124\tStop all axes"));  // Test: Pending
+    echoln(F("M124\tStop all axes"));
   }
 }
 
-bool command_isdone() {
-  echoln("MOVE: " + String(isAllDone() ? "ok" : "pending"));
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
+bool CommandM87() {
+  echoln("Move: " + String(isAllDone() ? "ok" : "pending"));
   return false;
 }
 
-bool command_power_status() {
-  echoln("POWER: " + String(power.status() ? "on" : "off"));
-  return false;
+bool CommandM80() {
+  echo("Power status");
+  if (debug) {
+    echoln(String("\n") +
+           "  " + 
+           power.nameRead() + ": " + (power.status() ? "On" : "Off") + "\n" +
+           "  DC current: " + (digitalRead(power_sensor_pin) ? "Yes" : "No"));
+  }
+  else {
+    Serial.println(String(": ") + (digitalRead(power_sensor_pin) ? "On" : "Off"));
+  }
+  return !digitalRead(power_sensor_pin);
 }
 
-bool command_power_on() {
+bool CommandM81() {
   power.set(HIGH);
   return !power.status();
 }
 
-bool command_power_off() {
+bool CommandM82() {
   power.set(LOW);
   return power.status();
 }
 
-void command_reset() {
+void CommandG90() {
+  x_axis.absolute(true);
+  y_axis.absolute(true);
+}
+
+void CommandG91() {
+  x_axis.absolute(false);
+  y_axis.absolute(false);
+}
+
+void CommandM99() {
   echoln("Reseting...\n");
   x_stepper.release();
   y_stepper.release();
@@ -80,67 +114,50 @@ void command_reset() {
   x2.reset();
 }
 
-bool command_laser_on() {
+bool CommandM71() {
   if (digitalRead(power_sensor_pin)) {
     laser.on();
   }
-  status(!power.status());
+  return !power.status() and !digitalRead(laser_pin);
 }
 
-bool command_laser_off() {
+bool CommandM72() {
   laser.off();
-  status(power.status());
+  return power.status() and digitalRead(laser_pin);
 }
 
-/* command_goto_absolute
+void CommandM70() {
+  echoln("LASER: " + String(laser.status() ? "on" : "off"));
+}
+
+/* CommandG1
  * 
  * Description
- *   Moves axes to absolute position.
+ *   Moves axes to position.
  * 
- *   command_goto_absolute(100, -80)
+ *   CommandG1(100, -80)
  * 
  * Parameters
- *   x: Cartesian position to x axis.
- *   y: Cartesian position to y axis.
+ *   x: x axis position.
+ *   y: y axis position.
  * 
  * Returns
  *   bool: 0 - No error.
  *         1 - Position limit has exceeded.
  */
-bool command_goto_absolute(int x, int y) {
+bool CommandG1(int x, int y) {
   x_axis.positionWrite(x);
   y_axis.positionWrite(y);
   return false;
 }
 
-/* command_goto_relative
- * 
- * Description
- *   Moves axes to relative position.
- * 
- *   command_goto_relative(100, -80)
- * 
- * Parameters
- *   x: Cartesian position to x axis.
- *   y: Cartesian position to y axis.
- * 
- * Returns
- *   bool: 0 - No error.
- *         1 - Position limit has exceeded.
- */
-bool command_goto_relative(int x, int y) {
-  x_axis.positionWrite(x_axis.positionRead() + x);
-  y_axis.positionWrite(y_axis.positionRead() + y);
-  return false;
-}
-
-bool command_delay(int x, int y) {
+bool CommandG3(int x, int y) {
   x_axis.delayWrite(x);
   y_axis.delayWrite(y);
   return false;
 }
 
-bool command_park() {
+bool CommandG28() {
   x_axis.delayWrite(2);
   y_axis.delayWrite(2);
   x_axis.positionWrite(x_axis.parkRead());
@@ -150,20 +167,22 @@ bool command_park() {
   return false;
 }
 
-bool command_stop() {
+bool CommandM124() {
   demonstration_period.set(0);
   x_axis.positionWrite(x_axis.positionRead());
   y_axis.positionWrite(y_axis.positionRead());
   return false;
 }
 
-bool command_demo(int seconds) {
+bool CommandG6(int seconds) {
   if (seconds > 0) {
     demonstration_period.set(seconds * 1000);
+    return false;
   }
+  return true;
 }
 
-bool command_gage() {
+bool CommandG132() {
   if (!digitalRead(power_sensor_pin)) {
     return true;
   }
@@ -202,87 +221,87 @@ bool command_gage() {
   return false;
 }
 
-bool command_axes() {
+bool CommandM86() {
   echoln(String("Axes position: ") +
-              "(" + String(x_axis.positionRead()) + ", " +
-                    String(y_axis.positionRead()) + ")");
+                "(" + String(x_axis.positionRead()) + ", " +
+                      String(y_axis.positionRead()) + ")");
   echoln(String("Axes delay: ") +
-              "(" + String(x_axis.delayRead()) + ", " +
-                    String(y_axis.delayRead()) + ")");
+                "(" + String(x_axis.delayRead()) + ", " +
+                      String(y_axis.delayRead()) + ")");
 }
 
-bool command_ultrasonic() {
+bool CommandM88() {
   laser.off();
   echoln(distance + ": " + HC_SR04.read() + " cm");
   return false;
 }
 
-bool command_temperature() {
+bool CommandM91() {
   echoln(temperature.nameRead() + " (" +
-       temperature.status_name() + "): " +
-       temperature.valueRead() +
-       temperature.unitRead());
+         temperature.status_name() + "): " +
+         temperature.valueRead() +
+         temperature.unitRead());
   if (debug)
     echoln("  Warning low: " +
-         String(temperature.min_warningRead()) +
-         temperature.unitRead() + "\n" +
-         "  Critical low: " +
-         String(temperature.min_criticalRead()) +
-         temperature.unitRead() + "\n" +
-         "  Warning high: " +
-         String(temperature.max_warningRead()) +
-         temperature.unitRead() + "\n" +
-         "  Critical high: " +
-         String(temperature.max_criticalRead()) +
-         temperature.unitRead());
+           String(temperature.min_warningRead()) +
+           temperature.unitRead() + "\n" +
+           "  Critical low: " +
+           String(temperature.min_criticalRead()) +
+           temperature.unitRead() + "\n" +
+           "  Warning high: " +
+           String(temperature.max_warningRead()) +
+           temperature.unitRead() + "\n" +
+           "  Critical high: " +
+           String(temperature.max_criticalRead()) +
+           temperature.unitRead());
 }
 
-bool command_fan() {
+bool CommandM90() {
   echoln(fan.nameRead() + " (" +
-       fan.status_name() + "): " +
-       (int)fan.valueRead() +
-       fan.unitRead() + " (" +
-       fan_control.readRPM() +
-       " RPM)");
+         fan.status_name() + "): " +
+         (int)fan.valueRead() +
+         fan.unitRead() + " (" +
+         fan_control.readRPM() +
+         " RPM)");
   if (debug) {
     echoln("  Warning: " + String(fan.max_warningRead()) + fan.unitRead() +
-         "\n" +
-         "  Critical: " + String(fan.max_criticalRead()) + fan.unitRead());
+           "\n" +
+           "  Critical: " + String(fan.max_criticalRead()) + fan.unitRead());
   }
 }
 
-bool command_mem() {
+bool CommandM89() {
   int total = 2 * 1024;
   int free = freeMemory();
   int used = total - free;
   int percent = (float)used * 100 / total;
   // 
   Alarm memory(75, 85);
-  memory.nameWrite("Memory");
+  memory.nameWrite("MEMORY");
   memory.unitWrite("%");
   memory.check(percent);
   // 
   echoln(memory.nameRead() + " (" + memory.status_name() + "): " + 
-       percent + memory.unitRead() + " used");
+         percent + memory.unitRead() + " used");
   if (debug) {
     echoln("  SRAM:\t" + String(total) + " B\n" +
-         "  Used:\t" + used + " B\n" +
-         "  Free:\t" + free + " B\n" +
-         "  Warning: " + memory.max_warningRead() + memory.unitRead() + "\n" +
-         "  Critical: " + memory.max_criticalRead() + memory.unitRead());
+           "  Used:\t" + used + " B\n" +
+           "  Free:\t" + free + " B\n" +
+           "  Warning: " + memory.max_warningRead() + memory.unitRead() + "\n" +
+           "  Critical: " + memory.max_criticalRead() + memory.unitRead());
   }
 }
 
-void command_info() {
-  command_version();
-  command_mem();
-  command_power_status();
-  command_temperature();
-  command_fan();
-  command_axes();
+void CommandM15() {
+  CommandM92();
+  CommandM89();
+  CommandM80();
+  CommandM91();
+  CommandM90();
+  CommandM86();
 }
 
-bool command_version() {
+void CommandM92() {
   echoln(x2.version());
   if (debug or (millis() < 100)) {
     echoln(x2.owner());
@@ -291,15 +310,14 @@ bool command_version() {
     echoln(x2.website());
     echoln(x2.contact());
   }
-  return false;
 }
 
-/* command_M111
+/* CommandM111
  * 
  * Description
  *   Changes debug mode on or off.
  * 
- *   command_M111()
+ *   CommandM111()
  * 
  * Parameters
  *   none
@@ -307,25 +325,25 @@ bool command_version() {
  * Returns
  *   void
  */
-void command_M111() {
+void CommandM111() {
   debug = !debug;
   echoln("DEBUG: " + String(debug ? F("on") : F("off")));
 }
 
-void command_unknown() {
-  echoln(F("Error: unknown command")); 
+void Command0() {
+  echoln(F("Unknown command")); 
 }
 
-bool command_attach() {
+bool CommandM17() {
   return false;
 }
 
-/* command_detach
+/* CommandM18
  * 
  * Description
  *   Detaches stepper motors.
  * 
- *   command_detach()
+ *   CommandM18()
  * 
  * Parameters
  *   none
@@ -333,7 +351,7 @@ bool command_attach() {
  * Returns
  *   void
  */
-void command_detach() {
+void CommandM18() {
   x_stepper.release();
   y_stepper.release();
 }

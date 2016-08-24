@@ -67,14 +67,14 @@ void HealthCheckHandler() {
                                0, 100));  // To (minimum and maximum)
     // Power off on high temperature
     if (temperature.status() == CRITICAL) {
-      if (debug) command_temperature();
-      command_detach();
-      laser.off();
-      power.off();
+      if (debug) CommandM91();
+      CommandM18();  // Detach motors
+      CommandM72();  // Laser off
+      CommandM82();  // Power off
     }
     // Report fan on high speed
     if (fan.status() == CRITICAL) {
-      if (debug) command_fan();
+      if (debug) CommandM90();
     }
     // Join alarm status
     byte general_status = UNKNOWN;
@@ -135,20 +135,21 @@ void PowerHandler() {
     if (!standby_status) {
       standby_status = true;
       Serial.print("Entering in standby... ");
-      laser.off();
-      command_park();
+      CommandG90();  // Absolute programming
+      CommandM72();  // Laser off
+      CommandG28();  // Home axes
     }
     if (isAllDone() and !standby_done) {
       standby_done = true;
       standby_status = false;
-      power.set(LOW);
+      CommandM82();  // Power off
       Serial.println("Done.");
     }
   }
   // If power fail
   if (digitalRead(power_sensor_pin) == LOW) {
-    command_detach();
-    laser.off();
+    CommandM18();  // Disable all motors
+    CommandM72();  // Laser off
   }
 }
 

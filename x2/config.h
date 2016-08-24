@@ -38,7 +38,7 @@ const byte random_Seed_pin = lm35_pin;
 // Timers
 const byte health_check_timer = 2;  // seconds
 const byte sensors_timer = 2;  // seconds
-const byte standby_timer = 5;  // minutes
+const byte standby_timer = 1;  // minute
 
 // Debug mode
 bool debug = false;

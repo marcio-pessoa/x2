@@ -9,7 +9,6 @@
 
 #include <Arduino.h>         // Arduino - Main library
 #include <Project.h>         // Sciemon - Basic project definitions
-#include <Help.h>            // Sciemon - Help messages builder
 #include <Blinker.h>         // Sciemon - Blink leds nicely
 #include <Timer.h>           // Sciemon - Timer library with nice features
 #include <Alarm.h>           // Sciemon - Manage alarms
@@ -105,7 +104,7 @@ void setup() {
   Serial.begin(serial_speed);
   // Start up message
   Serial.println("Starting...");
-  command_version();
+  CommandM92();
   // Power relay
   power.nameWrite("Power relay");
   // Power supply DC detection

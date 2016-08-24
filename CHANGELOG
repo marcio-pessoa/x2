@@ -18,11 +18,11 @@ CHANGELOG, x2 Mark I - Two Axes Platform, Change log file
         clear and to grow up.
 
 2014-12-02
-        * command_delay
-        added command_delay() to set axis delay.
+        * CommandG3
+        added CommandG3() to set axis delay.
 
 2014-11-27
-        * command_demo
+        * CommandG6
         added this command to demonstration and mechanic test purposes.
 
 2014-11-22

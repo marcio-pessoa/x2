@@ -7,7 +7,7 @@
 #define BUFFER_SIZE 48
 
 char buffer[BUFFER_SIZE];
-int buffer_pointer;
+int buffer_pointer = 0;
 
 void status(bool i) {
   Serial.println(i == false ? F("ok") : F("nok"));
@@ -54,100 +54,117 @@ void GCodeParse() {
   bool retval = false;
   char letter = buffer[0];
   byte number = GCodeNumber(letter, -1);
-  if (letter == 'G') {
-    switch (number) {
-      case 0:
-        command_M100(letter);
-        break;
-      case 1:
-        retval = command_goto_absolute(GCodeNumber('X', 0), GCodeNumber('Y', 0));
-        break;
-      case 2:
-        retval = command_goto_relative(GCodeNumber('X', 0), GCodeNumber('Y', 0));
-        break;
-      case 3:
-        retval = command_delay(GCodeNumber('X', 0), GCodeNumber('Y', 0));
-        break;
-      case 28:
-        retval = command_park();
-        break;
-      case 132:
-        retval = command_gage();
-        break;
-      case 6:
-        retval = command_demo(GCodeNumber('T', 0));
-        break;
-      default:
-        break;
-    }
+  switch (letter) {
+    case 'G':
+      switch (number) {
+        case 0:
+          CommandM100(letter);
+          break;
+        case 1:
+        case 2:
+          retval = CommandG1(GCodeNumber('X', 0), GCodeNumber('Y', 0));
+          break;
+        case 3:
+          retval = CommandG3(GCodeNumber('X', 0), GCodeNumber('Y', 0));
+          break;
+        case 6:
+          retval = CommandG6(GCodeNumber('T', 0));
+          break;
+        case 28:
+          retval = CommandG28();
+          break;
+        case 90:
+          CommandG90();
+          break;
+        case 91:
+          CommandG91();
+          break;
+        case 132:
+          retval = CommandG132();
+          break;
+        default:
+          Command0();
+          break;
+      }
+      break;
+    case 'M':
+      switch(number) {
+        case 0:
+          CommandM100(letter);
+          break;
+        case 124:
+          retval = CommandM124();
+          break;
+        case 17:
+          retval = CommandM17();
+          break;
+        case 18:
+        case 84:
+          CommandM18();
+          break;
+        case 70:
+          CommandM70();
+          break;
+        case 71:
+          retval = CommandM71();
+          break;
+        case 72:
+          retval = CommandM72();
+          break;
+        case 80:
+          CommandM80();
+          break;
+        case 81:
+          retval = CommandM81();
+          break;
+        case 82:
+          retval = CommandM82();
+          break;
+        case 15:
+          CommandM15();
+          break;
+        case 86:
+          retval = CommandM86();
+          break;
+        case 87:
+          retval = CommandM87();
+          break;
+        case 88:
+          retval = CommandM88();
+          break;
+        case 89:
+          retval = CommandM89();
+          break;
+        case 90:
+          retval = CommandM90();
+          break;
+        case 91:
+          retval = CommandM91();
+          break;
+        case 92:
+          CommandM92();
+          break;
+        case 99:
+          CommandM99();
+          break;
+        case 100:
+          CommandM100();
+          break;
+        case 111:
+          CommandM111();
+          break;
+        default:
+          Command0();
+          break;
+      }
+      break;
+    default:
+      if (buffer_pointer > 2) {
+        Command0();
+      }
+      break;
   }
-  else if (letter == 'M') {
-    switch(number) {
-      case 0:
-        command_M100(letter);
-        break;
-      case 124:
-        retval = command_stop();
-        break;
-      case 17:
-        retval = command_attach();
-        break;
-      case 18:
-        command_detach();
-        break;
-      case 80:
-        retval = command_power_on();
-        break;
-      case 81:
-        retval = command_power_off();
-        break;
-      case 82:
-        retval = command_power_status();
-        break;
-      case 99:
-        command_reset();
-        break;
-      case 84:
-        retval = command_laser_on();
-        break;
-      case 85:
-        retval = command_laser_off();
-        break;
-      case 15:
-        command_info();
-        break;
-      case 86:
-        retval = command_axes();
-        break;
-      case 87:
-        retval = command_isdone();
-        break;
-      case 88:
-        retval = command_ultrasonic();
-        break;
-      case 89:
-        retval = command_mem();
-        break;
-      case 90:
-        retval = command_fan();
-        break;
-      case 91:
-        retval = command_temperature();
-        break;
-      case 92:
-        retval = command_version();
-        break;
-      case 100:
-        command_M100();
-        break;
-      case 111:
-        command_M111();
-        break;
-      default:
-        break;
-    }
-  }
-  if (buffer_pointer > 0) {
+  if (buffer_pointer > 2) {
     status(retval);
   }
 }
