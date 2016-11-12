@@ -9,6 +9,8 @@ Electronics
     * Cabling
 
 Software
+  * Standby
+    * Corrigir, falha ao ser acionado pela segunda vez.
   * Power
     * Transformar command_power num handle, pois mesmo com tantos testes o command power ainda apresenta comportamento inadequado.
   * Soft Limits
