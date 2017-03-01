@@ -7,27 +7,27 @@
  * Contributors: none
  */
 
-#include <Arduino.h>         // Arduino - Main library
-#include <Project.h>         // Sciemon - Basic project definitions
-#include <Blinker.h>         // Sciemon - Blink leds nicely
-#include <Timer.h>           // Sciemon - Timer library with nice features
-#include <Alarm.h>           // Sciemon - Manage alarms
-#include <Switch.h>          // Sciemon - Switch manipulation
-#include <Fan.h>             // Sciemon - Fan speed control
-#include <Temperature.h>     // Sciemon - Temperature Sensors
-#include <Axis.h>            // Sciemon - Motor axis
-#include <Ultrasonic.h>      // Sciemon - Ultrasonic distance sensor
-#include <Infrared.h>        // Sciemon - Infrared distance sensor
-#include "config.h"          // Sciemon - Configuration
-#include <AFMotor.h>         // Adafruit - Motor Shield
-#include <MemoryFree.h>      // 
+#include <Arduino.h>      // Arduino - Main library
+#include <Project.h>      // Sciemon - Basic project definitions
+#include <Blinker.h>      // Sciemon - Blink leds nicely
+#include <Timer.h>        // Sciemon - Timer library with nice features
+#include <Alarm.h>        // Sciemon - Manage alarms
+#include <Switch.h>       // Sciemon - Switch manipulation
+#include <Fan.h>          // Sciemon - Fan speed control
+#include <Temperature.h>  // Sciemon - Temperature Sensors
+#include <Axis.h>         // Sciemon - Motor axis
+#include <Ultrasonic.h>   // Sciemon - Ultrasonic distance sensor
+#include <Infrared.h>     // Sciemon - Infrared distance sensor
+#include "config.h"       // Sciemon - Configuration
+#include <AFMotor.h>      // Adafruit - Motor Shield
+#include <MemoryFree.h>   // 
 
 // Project definitions
 Project x2("x2",  // Platform
            "I",  // Mark
            "Two Axes Platform",  // Name
-           "0.12b",  // Version
-           "2016-09-08",  // Version date
+           "0.13b",  // Version
+           "2017-02-28",  // Version date
            "1",  // Serial number
            "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
@@ -103,8 +103,8 @@ void setup() {
   // Serial interface
   Serial.begin(serial_speed);
   // Start up message
-  Serial.println("Starting...");
-  CommandM92();
+  // Serial.println("Starting...");
+  CommandM92();  // System information
   // Power relay
   power.nameWrite("Power relay");
   // Power supply DC detection
@@ -127,6 +127,7 @@ void setup() {
   pinMode(random_Seed_pin, INPUT);
   randomSeed(analogRead(random_Seed_pin));
   // G-code ready to receive commands
+  status(false);
   GcodeReady();
 }
 

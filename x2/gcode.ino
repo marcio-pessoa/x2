@@ -9,16 +9,16 @@
 char buffer[BUFFER_SIZE];
 int buffer_pointer = 0;
 
-void status(bool i) {
-  Serial.println(i == false ? F("ok") : F("nok"));
-}
-
 bool echo(String message) {
   Serial.print(String(F("echo:")) + message);
 }
 
 bool echoln(String message) {
   echo(message + "\n");
+}
+
+void status(bool i) {
+  Serial.println(i == false ? F("ok") : F("nok"));
 }
 
 void GcodeReady() {
@@ -52,17 +52,25 @@ float GCodeNumber(char code, float val) {
 
 void GCodeParse() {
   bool retval = false;
+  bool skip_status = false;
   char letter = buffer[0];
   byte number = GCodeNumber(letter, -1);
   switch (letter) {
     case 'G':
       switch (number) {
         case 0:
-          CommandM100(letter);
+          retval = CommandG0(GCodeNumber('X', false),
+                             GCodeNumber('Y', false),
+                             GCodeNumber('Z', false));
+          skip_status = true;
           break;
         case 1:
+          retval = CommandG1(GCodeNumber('X', false),
+                             GCodeNumber('Y', false),
+                             GCodeNumber('Z', false));
+          skip_status = true;
+          break;
         case 2:
-          retval = CommandG1(GCodeNumber('X', 0), GCodeNumber('Y', 0));
           break;
         case 3:
           retval = CommandG3(GCodeNumber('X', 0), GCodeNumber('Y', 0));
@@ -70,8 +78,11 @@ void GCodeParse() {
         case 6:
           retval = CommandG6(GCodeNumber('T', 0));
           break;
+        case 21:
+          break;
         case 28:
-          retval = CommandG28();
+          CommandG28();
+          skip_status = true;
           break;
         case 90:
           CommandG90();
@@ -90,7 +101,14 @@ void GCodeParse() {
     case 'M':
       switch(number) {
         case 0:
-          CommandM100(letter);
+          retval = CommandM0(letter);
+          break;
+        case 03:
+        case 04:
+          retval = CommandM71();
+          break;
+        case 05:
+          retval = CommandM72();
           break;
         case 124:
           retval = CommandM124();
@@ -105,19 +123,13 @@ void GCodeParse() {
         case 70:
           CommandM70();
           break;
-        case 71:
-          retval = CommandM71();
-          break;
-        case 72:
-          retval = CommandM72();
-          break;
+        // case 80:
+          // CommandM80();
+          // break;
         case 80:
-          CommandM80();
-          break;
-        case 81:
           retval = CommandM81();
           break;
-        case 82:
+        case 81:
           retval = CommandM82();
           break;
         case 15:
@@ -158,13 +170,17 @@ void GCodeParse() {
           break;
       }
       break;
+    case '%':
+    case '(':
+      buffer_pointer = 1;
+      break;
     default:
       if (buffer_pointer > 2) {
         Command0();
       }
       break;
   }
-  if (buffer_pointer > 2) {
+  if (buffer_pointer > 2 and skip_status == false) {
     status(retval);
   }
 }

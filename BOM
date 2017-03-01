@@ -4,15 +4,55 @@ Label:
   Status '-': OK
   Status '+': Pending
 
-Part list:
-+ Item name
-  + Technical specification
-    + URL: 
-  + Buy
-    + Date: 
-    + Cost: USD 0.0
-    + eBay item ID: 
-    + Delivery: 
-  + Install
+- DMDG Mounted Holder for HC-SR04 Ultrasonic Sensor Module - Transparent
+  - Technical specification
+    - URL: http://www.dx.com/p/315141
+  - Buy
+    - Date: 16/06/2014 07:36
+    - Cost: USD 2.41
+    - DX item ID: 140615001089387261
+  - Delivery
+    - Date: 2014-mm-dd
+  - Install
+- 5V Red Laser Diodes for Toys / Instruments - Golden + Red + Blue (2 PCS)
+  - Technical specification
+    - URL: http://www.dx.com/p/256087
+  - Buy
+    - Date: 16/06/2014 07:36
+    - Cost: USD 2.25
+    - DX item ID: 140615001089387261
+  - Delivery
+    - Date: 2014-mm-dd
+  - Install
+- 5V 3.8A Regulated Switching Power Supply - Silver
+  - Technical specification
+    - URL: http://www.dx.com/p/145841
+  - Buy
+    - Date: Fri, Aug 9, 2013 at 8:24 AM
+    - Cost: USD 8.40
+    - DX item ID: 130808001077185863
+  - Delivery
+    - Date: 2013-mm-dd
+  - Install
+- HC-SR04 Ultrasonic Sensor Distance Measuring Module
+  - Technical specification
+    - URL: http://www.dx.com/p/133696
+  - Buy
+    - Date: Thu, Sep 12, 2013 at 3:40 PM
+    - Cost: USD 3.10
+    - DX item ID: 130912001018416247
+  - Delivery
+    - Date: 2013-mm-dd
+  - Install
+- Arduino Compatible 2-Channel Motor Driver Shield
+  - Technical specification
+    - URL: http://www.dx.com/p/138600
+  - Buy
+    - Date: Mon, Sep 24, 2012 at 5:47 PM
+    - Cost: USD 11.50
+    - DX item ID: 120924001083816548
+  - Delivery
+    - Date: 2012-mm-dd
+  - Install
 
-Total cost: $0.0
+Total cost: $27.66

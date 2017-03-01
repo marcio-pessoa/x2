@@ -21,7 +21,7 @@
  */
 void CommandM100(char letter = 0) {
   if (letter == 'G' or letter == 0) {
-    echoln(F("G01\Move axes"));
+    echoln(F("G01\tMove axes"));
     echoln(F("G03\tDelay between moves"));
     echoln(F("G06\tDemonstratio mode"));
     echoln(F("G28\tHome axes"));
@@ -34,8 +34,8 @@ void CommandM100(char letter = 0) {
     echoln(F("M17\tAttach motors"));  // Test: Pending
     echoln(F("M18\tDetach motors; same as M84"));  // Test: Pending
     echoln(F("M70\tLaser status"));  // Test: Pending
-    echoln(F("M71\tLaser on"));
-    echoln(F("M72\tLaser off"));
+    echoln(F("M03\tLaser on"));
+    echoln(F("M05\tLaser off"));
     echoln(F("M80\tPower status"));
     echoln(F("M81\tPower on"));
     echoln(F("M82\tPower off"));
@@ -72,22 +72,25 @@ bool CommandM87() {
 }
 
 bool CommandM80() {
-  echo("Power status");
   if (debug) {
+    echo("Power status");
     echoln(String("\n") +
            "  " + 
            power.nameRead() + ": " + (power.status() ? "On" : "Off") + "\n" +
            "  DC current: " + (digitalRead(power_sensor_pin) ? "Yes" : "No"));
-  }
-  else {
-    Serial.println(String(": ") + (digitalRead(power_sensor_pin) ? "On" : "Off"));
   }
   return !digitalRead(power_sensor_pin);
 }
 
 bool CommandM81() {
   power.set(HIGH);
-  return !power.status();
+  for (byte i=0; i<10; i++) {
+    if (!CommandM80()) {  // Power status
+      return false;
+    }
+    delay(100);
+  }
+  return true;
 }
 
 bool CommandM82() {
@@ -130,6 +133,42 @@ void CommandM70() {
   echoln("LASER: " + String(laser.status() ? "on" : "off"));
 }
 
+/* CommandG0
+ * 
+ * Description
+ *   Fast move.
+ * 
+ *   CommandG0(100, -80, -10)
+ * 
+ * Parameters
+ *   x: x axis position.
+ *   y: y axis position.
+ *   z: z axis position.
+ * 
+ * Returns
+ *   bool: 0 - No error.
+ *         1 - Position limit has exceeded.
+ */
+bool CommandG0(float x, float y, float z) {
+  if (x != false) {
+    done = false;
+    x_axis.positionWrite(x);
+  }
+  if (y != false) {
+    done = false;
+    y_axis.positionWrite(y);
+  }
+  if (z != false) {
+    done = false;
+    if (z < 0) {
+      CommandM71();
+    }
+    if (z > 0) {
+      CommandM72();
+    }
+  }
+}
+
 /* CommandG1
  * 
  * Description
@@ -140,15 +179,30 @@ void CommandM70() {
  * Parameters
  *   x: x axis position.
  *   y: y axis position.
+ *   z: z axis (tool )position.
  * 
  * Returns
  *   bool: 0 - No error.
  *         1 - Position limit has exceeded.
  */
-bool CommandG1(int x, int y) {
-  x_axis.positionWrite(x);
-  y_axis.positionWrite(y);
-  return false;
+bool CommandG1(float x, float y, float z) {
+  if (x != false) {
+    done = false;
+    x_axis.positionWrite(x);
+  }
+  if (y != false) {
+    done = false;
+    y_axis.positionWrite(y);
+  }
+  if (z != false) {
+    done = false;
+    if (z < 0) {
+      CommandM71();
+    }
+    if (z > 0) {
+      CommandM72();
+    }
+  }
 }
 
 bool CommandG3(int x, int y) {
@@ -158,13 +212,11 @@ bool CommandG3(int x, int y) {
 }
 
 bool CommandG28() {
+  done = false;
   x_axis.delayWrite(2);
   y_axis.delayWrite(2);
   x_axis.positionWrite(x_axis.parkRead());
   y_axis.positionWrite(y_axis.parkRead());
-  x_stepper.release();
-  y_stepper.release();
-  return false;
 }
 
 bool CommandM124() {
@@ -312,6 +364,26 @@ void CommandM92() {
   }
 }
 
+/* CommandM0
+ * 
+ * Description
+ *   Stop all axes.
+ * 
+ *   CommandM0()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
+bool CommandM0() {
+  demonstration_period.set(0);
+  x_axis.positionWrite(x_axis.positionRead());
+  y_axis.positionWrite(y_axis.positionRead());
+  return false;
+}
+
 /* CommandM111
  * 
  * Description
@@ -352,6 +424,7 @@ bool CommandM17() {
  *   void
  */
 void CommandM18() {
+  CommandM0();  // Compulsory stop
   x_stepper.release();
   y_stepper.release();
 }

@@ -33,18 +33,23 @@ bool AxesHandler() {
   switch (y_axis.positionReadRelative()) {
     case 1: {
       standby.reset();
-      y_stepper.step(1, FORWARD, INTERLEAVE);
+      y_stepper.step(1, BACKWARD, INTERLEAVE);
       break;
     }
     case -1: {
       standby.reset();
-      y_stepper.step(1, BACKWARD, INTERLEAVE);
+      y_stepper.step(1, FORWARD, INTERLEAVE);
       break;
     }
     case 0:
     default: {
       break;
     }
+  }
+  // 
+  if (isAllDone() and done == false) {
+    done = true;
+    status(false);
   }
 }
 
@@ -134,7 +139,7 @@ void PowerHandler() {
   if (standby.check()) {
     if (!standby_status) {
       standby_status = true;
-      Serial.print("Entering in standby... ");
+      // Serial.print("Entering in standby... ");
       CommandG90();  // Absolute programming
       CommandM72();  // Laser off
       CommandG28();  // Home axes
@@ -143,7 +148,7 @@ void PowerHandler() {
       standby_done = true;
       standby_status = false;
       CommandM82();  // Power off
-      Serial.println("Done.");
+      // Serial.println("Done.");
     }
   }
   // If power fail
