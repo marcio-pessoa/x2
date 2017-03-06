@@ -11,6 +11,131 @@ BACKLOG
       * Cabling
 + Software
   * Firmware (Arduino)
+    * Commands
+      * 0
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G2
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G3
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G6
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G21
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G28
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G90
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G91
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G132
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M0
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M3
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M4
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M5
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M17
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M18
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M84
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M70
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M80
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M81
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M15
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M86
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M87
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M88
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M89
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M90
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M91
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M92
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M99
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M100
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M111
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M124
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
     * Tool
       * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
         * Build support
@@ -18,9 +143,28 @@ BACKLOG
       * Transformar command_power num handle, pois mesmo com tantos testes o
         command power ainda apresenta comportamento inadequado.
     * Soft Limits
-      * Quando 0 comando "r" determinar que um eixo se mova para além de um soft
-        limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
+      * Quando 0 comando "r" determinar que um eixo se mova para além de um
+        soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
         Maximum limit exceeded on axis 1
+    * Usar expressões regulares para interpretar os comandos recebidos com
+      começo, meio e fim:
+      * Exemplo:
+        Distance 33.23 cm
+        ^        ^     ^
+        |        |     |
+        |        |     \---- Fim
+        |        |
+        |        \---- Meio
+        |
+        \---- Começo
+      * Onde:
+        * Começo: Constante
+        * Meio: Variável, validado por expressões regulares
+        * Fim:  Contante
+    * Implementar a função message_debug com o nome message
+      * Dois níveis de mensagens:
+        * normal
+        * debug
   * Slic3r
     * Configure
 
@@ -30,10 +174,11 @@ TODO
 + Software
   * Firmware (Arduino)
     * Commands
-      * G1
-        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
+      * G0
+        * Revisar implementação
     * Standby
       * Bug: Falha ao ser acionado pela segunda vez.
+      * Bug: Falha ao realizar comando G28.
 
 IN PROGRESS
 + Mechanics
@@ -41,6 +186,8 @@ IN PROGRESS
 + Software
   * Firmware (Arduino)
     * Commands
+      * G1
+        * Revisar implementação
 
 TESTING
 + Mechanics
@@ -51,13 +198,14 @@ TESTING
       > Acredito que isso pode ser feito no AxesHandler() que pode emitir uma
         mensagem via echoln() quando todos os eixos pararem após um movimento.
     * Commands
-      * M17
-        > 2017-02-28 - Verificar se retorno do comando está correto.
+      * G1
+        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
       * M18
-        > 2017-02-28 - É necessário parar qualquer movimento antes de desligar
-          os motores, do contrário eles permanecerão se movendo e o comando
-          M18 não surtirá efeito algum.
-        > 2017-02-28 - Verificar se retorno do comando está correto.
+        * Revisar implementação
+          > 2017-02-28 - É necessário parar qualquer movimento antes de
+            desligar os motores, do contrário eles permanecerão se movendo e o
+            comando M18 não surtirá efeito algum.
+        * Verificar se retorno do comando está correto.
 
 DONE
 + Mechanics
@@ -68,10 +216,29 @@ DONE
     interessante comprar um driver de motor de passo adicional para testes.
   * Tool
     * Bug: Laser and Ultrassonic is not working (probably cabling problem).
+  * Tool
+    * Bug: Laser and Ultrassonic is not working (probably cabling problem).
 + Software
   * Firmware (Arduino)
     * Commands
+      * G0
+        * Revisar nomenclatura
+        * Revisar função
+      * G1
+        * Revisar nomenclatura
+        * Revisar função
       * M0
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M17
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        * Verificar se retorno do comando está correto.
+      * M18
+        * Revisar nomenclatura
+        * Revisar função
     * Power
       * Auto power off
         * Timeout 5 minutos

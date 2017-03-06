@@ -21,7 +21,8 @@
  */
 void CommandM100(char letter = 0) {
   if (letter == 'G' or letter == 0) {
-    echoln(F("G01\tMove axes"));
+    echoln(F("G01\tQuick move"));
+    echoln(F("G01\tCoordinated movement"));
     echoln(F("G03\tDelay between moves"));
     echoln(F("G06\tDemonstratio mode"));
     echoln(F("G28\tHome axes"));
@@ -172,20 +173,83 @@ bool CommandG0(float x, float y, float z) {
 /* CommandG1
  * 
  * Description
- *   Moves axes to position.
+ *   Coordinated movement.
+ *   Moves axes from B point to C point using hypotenuse line.
  * 
- *   CommandG1(100, -80)
+ *   CommandG1(100, -80, -0.3)
+ * 
+ *   Math explanation
+ *     Quando viajamos entre o ponto B e C (no caso das linhas com ângulos), a
+ *     velocidade do cursor b e c não podem ser iguais, do contrário teremos
+ *     como resultado sempre um triângulo equilátero.
+ * 
+ *        B
+ *         |\
+ *         | \
+ *         |  \
+ *     CA c|   \a H
+ *         |    \
+ *         |     \
+ *         |      \
+ *        A---------C
+ *             b
+ *             CO
+ * 
+ *     Para formar um triângulo retângulo e dessa forma obter uma linha de
+ *     hipotenusa perfeita, é necessário compensar a velocidade dos cursores
+ *     b e c para que ambos cheguem ao destino simultaneamente.
+ *     Dessa forma, o cateto adjacente (CA - nossa referência) será sempre o de
+ *     maior comprimento e por essa razão o cursor c levará mais tempo para
+ *     completar o trajeto.
+ *     O objetivo consiste em compensar a velocidade do cursor b do cateto
+ *     oposto (CO - objetivo de cáculo) para que ele chegue ao ponto de destino
+ *     mais lentamente.
+ *     Dessa forma, podemos concluir que quanto maior for a acurácia da medida
+ *     de tempo maior será a precisão do momento de chegada dos cursores b e c,
+ *     consequentemente a linha da hipotenusa (H) será desenhada com maior
+ *     fidelidade.
+ * 
+ *   Computing
+ *     Levando em consideração um triangulo onde CA=4cm, CO=3cm, e a base de
+ *     tempo T=2ms, qual é o fator de tempo que deve ser aplicado ao cursor b
+ *     para que chegue ao destino simultaneamente com o cursor c?
+ * 
+ *   Proportion (cross-multiplication)
+ *     CA * T -> CA * T
+ *     CO * x -> CA * T
+ * 
+ *   So
+ *     x = (CA * T) / CO
+ * 
+ *   Example
+ *     x = (4 * 2) / 3
+ *     x = 8 / 3
+ *     x = 2.66666666666666666666ms
  * 
  * Parameters
  *   x: x axis position.
  *   y: y axis position.
- *   z: z axis (tool )position.
+ *   z: z axis (tool) position.
  * 
  * Returns
  *   bool: 0 - No error.
  *         1 - Position limit has exceeded.
  */
 bool CommandG1(float x, float y, float z) {
+  if (abs(y - y_axis.positionRead()) > abs(x - x_axis.positionRead())) {
+    x_axis.delayWrite(round((float)(abs(y - y_axis.positionRead()) *
+                                        y_axis.delayRead()) /
+                                    abs(x - x_axis.positionRead())));
+  }
+  if (abs(x - x_axis.positionRead()) > abs(y - y_axis.positionRead())) {
+    y_axis.delayWrite(round((float)(abs(x - x_axis.positionRead()) *
+                                        x_axis.delayRead()) / 
+                                    abs(y - y_axis.positionRead())));
+  }
+  if (debug) {
+    CommandM86();  // Axes information
+  }
+  // 
   if (x != false) {
     done = false;
     x_axis.positionWrite(x);
@@ -345,12 +409,12 @@ bool CommandM89() {
 }
 
 void CommandM15() {
-  CommandM92();
-  CommandM89();
-  CommandM80();
-  CommandM91();
-  CommandM90();
-  CommandM86();
+  CommandM92();  // 
+  CommandM89();  // 
+  CommandM80();  // 
+  CommandM91();  // 
+  CommandM90();  // 
+  CommandM86();  // 
 }
 
 void CommandM92() {

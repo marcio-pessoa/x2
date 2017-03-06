@@ -26,8 +26,8 @@
 Project x2("x2",  // Platform
            "I",  // Mark
            "Two Axes Platform",  // Name
-           "0.13b",  // Version
-           "2017-02-28",  // Version date
+           "0.14b",  // Version
+           "2017-03-06",  // Version date
            "1",  // Serial number
            "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
@@ -127,7 +127,6 @@ void setup() {
   pinMode(random_Seed_pin, INPUT);
   randomSeed(analogRead(random_Seed_pin));
   // G-code ready to receive commands
-  status(false);
   GcodeReady();
 }
 

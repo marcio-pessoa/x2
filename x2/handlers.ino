@@ -50,6 +50,8 @@ bool AxesHandler() {
   if (isAllDone() and done == false) {
     done = true;
     status(false);
+    x_axis.delayWrite(2);
+    y_axis.delayWrite(2);
   }
 }
 

@@ -10,7 +10,7 @@ char buffer[BUFFER_SIZE];
 int buffer_pointer = 0;
 
 bool echo(String message) {
-  Serial.print(String(F("echo:")) + message);
+  Serial.print(String(message));
 }
 
 bool echoln(String message) {
@@ -18,7 +18,7 @@ bool echoln(String message) {
 }
 
 void status(bool i) {
-  Serial.println(i == false ? F("ok") : F("nok"));
+  echoln(i == false ? F("ok") : F("nok"));
 }
 
 void GcodeReady() {
@@ -101,13 +101,13 @@ void GCodeParse() {
     case 'M':
       switch(number) {
         case 0:
-          retval = CommandM0(letter);
+          retval = CommandM0();
           break;
-        case 03:
-        case 04:
+        case 3:
+        case 4:
           retval = CommandM71();
           break;
-        case 05:
+        case 5:
           retval = CommandM72();
           break;
         case 124:
