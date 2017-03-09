@@ -261,10 +261,10 @@ bool CommandG1(float x, float y, float z) {
   if (z != false) {
     done = false;
     if (z < 0) {
-      CommandM71();
+      CommandM71();  // Laser on
     }
     if (z > 0) {
-      CommandM72();
+      CommandM72();  // Laser off
     }
   }
 }
@@ -347,8 +347,10 @@ bool CommandM86() {
 }
 
 bool CommandM88() {
-  laser.off();
-  echoln(distance + ": " + HC_SR04.read() + " cm");
+  CommandM72();  // Laser off
+  echoln(String(x_axis.positionRead()) + "," +
+                y_axis.positionRead() + "," +
+                HC_SR04.read());
   return false;
 }
 

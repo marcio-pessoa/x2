@@ -72,7 +72,6 @@ Switch laser(laser_pin);
 
 // Ultrasonic distance sensor
 Ultrasonic HC_SR04;
-String distance = "Distance";
 
 // Axis
 Axis x_axis("x",   // Name

@@ -2,25 +2,11 @@ KANBAN, x2 Mark I - Two Axes Platform, KANBAN file
 
 BACKLOG
 + Mechanics
-  * Tool
-    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Build support
 + Electronics
-  * Tool
-    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Cabling
 + Software
   * Firmware (Arduino)
     * Commands
       * 0
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * G2
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * G3
         * Revisar nomenclatura
         * Revisar função
         * Revisar implementação
@@ -80,14 +66,6 @@ BACKLOG
         * Revisar nomenclatura
         * Revisar função
         * Revisar implementação
-      * M80
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M81
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
       * M15
         * Revisar nomenclatura
         * Revisar função
@@ -136,49 +114,54 @@ BACKLOG
         * Revisar nomenclatura
         * Revisar função
         * Revisar implementação
-    * Tool
-      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-        * Build support
-    * Power
-      * Transformar command_power num handle, pois mesmo com tantos testes o
-        command power ainda apresenta comportamento inadequado.
-    * Soft Limits
-      * Quando 0 comando "r" determinar que um eixo se mova para além de um
-        soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
-        Maximum limit exceeded on axis 1
-    * Usar expressões regulares para interpretar os comandos recebidos com
-      começo, meio e fim:
-      * Exemplo:
-        Distance 33.23 cm
-        ^        ^     ^
-        |        |     |
-        |        |     \---- Fim
-        |        |
-        |        \---- Meio
-        |
-        \---- Começo
-      * Onde:
-        * Começo: Constante
-        * Meio: Variável, validado por expressões regulares
-        * Fim:  Contante
-    * Implementar a função message_debug com o nome message
-      * Dois níveis de mensagens:
-        * normal
-        * debug
   * Slic3r
     * Configure
++ Video
+  * Desenhando imagens Gcode e exibindo imagens de fotografias de longa
+    exposição
 
 TODO
 + Mechanics
+  * Tool
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Build support
 + Electronics
+  * Tool
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Cabling
 + Software
   * Firmware (Arduino)
     * Commands
+      * M80
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M81
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M82
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
       * G0
         * Revisar implementação
-    * Standby
-      * Bug: Falha ao ser acionado pela segunda vez.
-      * Bug: Falha ao realizar comando G28.
+      * G1
+        * Bug: "G1 X0 Y0" is not working.
+      * G2
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G3
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+    * Tool
+      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+        * Develop library and integration with x2
+    * PowerHandler()
+      * Bug: Standby, falha ao ser acionado pela segunda vez.
+      * Bug: Standby, falha ao realizar comando G28.
 
 IN PROGRESS
 + Mechanics
@@ -194,18 +177,13 @@ TESTING
 + Electronics
 + Software
   * Firmware (Arduino)
-    * Informar quando um comando de movimento for concluído.
-      > Acredito que isso pode ser feito no AxesHandler() que pode emitir uma
-        mensagem via echoln() quando todos os eixos pararem após um movimento.
     * Commands
       * G1
         * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
       * M18
-        * Revisar implementação
-          > 2017-02-28 - É necessário parar qualquer movimento antes de
-            desligar os motores, do contrário eles permanecerão se movendo e o
-            comando M18 não surtirá efeito algum.
         * Verificar se retorno do comando está correto.
+  * Odd Scanner
+    * Write program to generate Odd Scanner G-code files to be used on xC.
 
 DONE
 + Mechanics
@@ -216,7 +194,6 @@ DONE
     interessante comprar um driver de motor de passo adicional para testes.
   * Tool
     * Bug: Laser and Ultrassonic is not working (probably cabling problem).
-  * Tool
     * Bug: Laser and Ultrassonic is not working (probably cabling problem).
 + Software
   * Firmware (Arduino)
@@ -239,7 +216,16 @@ DONE
       * M18
         * Revisar nomenclatura
         * Revisar função
-    * Power
+        * Revisar implementação
+          > 2017-02-28 - É necessário parar qualquer movimento antes de
+            desligar os motores, do contrário eles permanecerão se movendo e o
+            comando M18 não surtirá efeito algum.
+    * AxesHandler()
+      * Informar quando um comando de movimento for concluído.
+        > Acredito que isso pode ser feito no AxesHandler() que pode emitir
+          uma mensagem via echoln() quando todos os eixos pararem após um
+          movimento.
+    * PowerHandler()
       * Auto power off
         * Timeout 5 minutos
           1. Turn off step motors
@@ -251,6 +237,8 @@ DONE
         * command_relay
           * park
           * recolher eixo y para posição 450
+      * Transformar command_power num handle, pois mesmo com tantos testes o
+        command power ainda apresenta comportamento inadequado.
     * Presentation
       * Definir padrão para retorno dos comandos
     * command_random
@@ -272,3 +260,30 @@ WON'T DO
 + Mechanics
 + Electronics
 + Software
+  * Firmware (Arduino)
+    * Usar expressões regulares para interpretar os comandos recebidos com
+      começo, meio e fim:
+      * Exemplo:
+        Distance 33.23 cm
+        ^        ^     ^
+        |        |     |
+        |        |     \---- Fim
+        |        |
+        |        \---- Meio
+        |
+        \---- Começo
+      * Onde:
+        * Começo: Constante
+        * Meio: Variável, validado por expressões regulares
+        * Fim:  Contante
+      > 2017-03-08 - Não se aplica ao G-code
+    * Implementar a função message_debug com o nome message
+      * Dois níveis de mensagens:
+        * normal
+        * debug
+      > 2017-03-08 - Não se aplica ao G-code
+    * Soft Limits
+      * Quando 0 comando "r" determinar que um eixo se mova para além de um
+        soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
+        Maximum limit exceeded on axis 1
+        > 2017-03-08 - Não se aplica ao G-code

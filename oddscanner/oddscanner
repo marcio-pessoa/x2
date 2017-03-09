@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Internal variables
+HEADER='header.gcode'
+FOOTER='footer.gcode'
+DISCLA=';oddscanner 0.01b (2017-03-09)
+;Copyright (c) 2013-2017 Marcio Pessoa
+;License: undefined. There is NO WARRANTY.
+;Website: http://pessoa.eti.br/
+;Contact: Marcio Pessoa <marcio.pessoa@sciemon.com>'
+
+# User input variables
+X=$1
+Y=$2
+
+# Check user input variables
+if [ "$#" -lt 2 ]; then
+  echo "usage: oddscanner <width> <height>
+
+positional arguments:
+  width          image width (x axis)
+  height         image height (y axis)
+
+examples:
+  oddscanner 100 80
+  oddscanner 320 240 > example.gcode
+"
+  exit 1
+fi
+
+# Define image corners
+x_start=$((-X / 2))
+y_start=$((-Y / 2))
+x_end=$((X + x_start -1))
+y_end=$((Y + y_start -1))
+
+# Header
+echo -e "$DISCLA\n"
+echo -e ";Image dimensions: ""$X""x""$Y"
+echo -e ";Corner A: $x_start,$y_start"
+echo -e ";Corner C: $x_end,$y_end"
+echo -e ""
+cat $HEADER
+echo ""
+
+# Generate scan code
+y=$((y_start))
+for (( x=x_start; x<=x_end; x++ )); do
+  if [ $y -le $((y_end)) ]; then
+    for (( y=x_start; y<=y_end; y++ )); do
+      echo "G0 X$x Y$y"
+      echo "M88 (Distance measure)"
+    done
+  fi
+  if [ $x -lt $x_end ]; then
+    x=$((x + 1))
+    for (( y=y_end; y>=y_start; y-- )); do
+      echo "G0 X$x Y$y"
+      echo "M88 (Distance measure)"
+    done
+  fi
+done
+
+# Footer
+echo ""
+cat $FOOTER
+
+exit 0

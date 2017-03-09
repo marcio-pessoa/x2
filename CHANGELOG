@@ -1,5 +1,8 @@
 CHANGELOG, x2 Mark I - Two Axes Platform, Change log file
 
+2017-03-09
+        * Added program to generate Odd Scanner G-code file to be used with xC.
+
 2017-03-06
         * Fixed G1 command to move between hypotenuse points.
 
