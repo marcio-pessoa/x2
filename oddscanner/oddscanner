@@ -1,4 +1,24 @@
 #!/bin/bash
+#
+# oddscanner, x2 Mark I - Two Axes Platform - Odd Scanner
+# Odd Scanner G-code Generator
+# 
+# Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
+# Contributors: none
+# 
+# Description:
+#   This generate G-code to operate Odd Scanner.
+# 
+# Example: 
+#   oddscanner -h
+# 
+# Change log
+# 2017-03-10
+#         Fixed: Wrong picture dimensions.
+#
+# 2017-03-09
+#         Experimental version.
+#
 
 # Internal variables
 HEADER='header.gcode'
@@ -47,7 +67,7 @@ echo ""
 y=$((y_start))
 for (( x=x_start; x<=x_end; x++ )); do
   if [ $y -le $((y_end)) ]; then
-    for (( y=x_start; y<=y_end; y++ )); do
+    for (( y=y_start; y<=y_end; y++ )); do
       echo "G0 X$x Y$y"
       echo "M88 (Distance measure)"
     done

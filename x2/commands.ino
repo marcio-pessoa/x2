@@ -151,15 +151,15 @@ void CommandM70() {
  *         1 - Position limit has exceeded.
  */
 bool CommandG0(float x, float y, float z) {
-  if (x != false) {
+  if (x != NULL) {
     done = false;
     x_axis.positionWrite(x);
   }
-  if (y != false) {
+  if (y != NULL) {
     done = false;
     y_axis.positionWrite(y);
   }
-  if (z != false) {
+  if (z != NULL) {
     done = false;
     if (z < 0) {
       CommandM71();

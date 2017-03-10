@@ -59,9 +59,9 @@ void GCodeParse() {
     case 'G':
       switch (number) {
         case 0:
-          retval = CommandG0(GCodeNumber('X', false),
-                             GCodeNumber('Y', false),
-                             GCodeNumber('Z', false));
+          retval = CommandG0(GCodeNumber('X', NULL),
+                             GCodeNumber('Y', NULL),
+                             GCodeNumber('Z', NULL));
           skip_status = true;
           break;
         case 1:

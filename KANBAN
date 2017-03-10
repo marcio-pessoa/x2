@@ -147,7 +147,7 @@ TODO
       * G0
         * Revisar implementação
       * G1
-        * Bug: "G1 X0 Y0" is not working.
+        * Revisar implementação
       * G2
         * Revisar nomenclatura
         * Revisar função
@@ -170,7 +170,7 @@ IN PROGRESS
   * Firmware (Arduino)
     * Commands
       * G1
-        * Revisar implementação
+        * Bug: "G1 X0 Y0" is not working.
 
 TESTING
 + Mechanics

@@ -1,5 +1,9 @@
 CHANGELOG, x2 Mark I - Two Axes Platform, Change log file
 
+2017-03-10
+        * Odd Scanner
+          * Fixed: Wrong picture dimensions.
+
 2017-03-09
         * Added program to generate Odd Scanner G-code file to be used with xC.
 
