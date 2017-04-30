@@ -4,26 +4,33 @@ Label:
   Status '-': OK
   Status '+': Pending
 
-- DMDG Mounted Holder for HC-SR04 Ultrasonic Sensor Module - Transparent
++ HC-SR04 Ultrasonic Sensor Distance Measuring Module
   - Technical specification
-    - URL: http://www.dx.com/p/315141
+    - URL: http://www.ebay.com/itm/141975951132?_trksid=p2055119.m1438.l2650&ssPageName=STRK%3AMEBIDX%3AIT
   - Buy
-    - Date: 16/06/2014 07:36
-    - Cost: USD 2.41
-    - DX item ID: 140615001089387261
-  - Delivery
-    - Date: 2014-mm-dd
-  - Install
-- 5V Red Laser Diodes for Toys / Instruments - Golden + Red + Blue (2 PCS)
+    - Date: Tue, Mar 14, 2017 at 11:42 AM
+    - Cost: USD 0.91 (CAD 1.22)
+    - eBay item ID: 141975951132
+    + Delivery: 
+  + Install
++ Mounting bracket HC-SR04 Ultrasonic Sensor Module - Transparent
   - Technical specification
-    - URL: http://www.dx.com/p/256087
+    - URL: http://rover.ebay.com/rover/0/e11400.m1842.l5919/7?euid=0b67b83123f245a8ba7f24896785b182&bu=44114865119&loc=http%3A%2F%2Fwww.ebay.com%2Fulk%2Fvod%3Ftransid%3D1368577405009%26itemid%3D191736126568%26qu%3D1&exe=15841&ext=40914&es=0&nqc=EECABQBAABBCAkAICAAAAIQZAQQAAAABAAAAABAAAEAAAAAAAAAAAAAAAAABAKAACAAAAgAAAAAgAAAAAAAAIAAAAAAAAAAAAAAAEAAAABACAoAAAAACEAAAzgIAEACCAAABEAAAIAIAAAQAAAAAggAAAAAAAAEACAAIABAAAAAAAAAAAAAAAAAC&nqt=EECAFQBAABBCAkAICAAAAIQZAQQAAAABAAAABBAAAEAAAAAAAAAAAAAAAAABAKAACAAAAgAAAAAgAAAAABAAIAAAAAAAAAAAAAAAEAAAABACAoAEAAACEAAAzgIAEACCAAABEAAAIAIAAAQAAAAAggAAAAACAAkACAAIABAAAAAAAAAAAAAAAAAC&ec=1&sojTags=es=es,nqc=nqc,nqt=nqt,ec=ec,exe=exe,ext=ext,bu=bu
   - Buy
-    - Date: 16/06/2014 07:36
-    - Cost: USD 2.25
-    - DX item ID: 140615001089387261
-  - Delivery
-    - Date: 2014-mm-dd
-  - Install
+    - Date: Tue, Mar 14, 2017 at 12:39 AM
+    - Cost: USD 0.76 (AU 1.00)
+    - eBay item ID: 191736126568
+    + Delivery: 
+  + Install
++ Mounting bracket HC-SR04 Ultrasonic Sensor Module - Transparent
+  - Technical specification
+    - URL: http://rover.ebay.com/rover/0/e11400.m1842.l5919/7?euid=0b67b83123f245a8ba7f24896785b182&bu=44114865119&loc=http%3A%2F%2Fwww.ebay.com%2Fulk%2Fvod%3Ftransid%3D1368577405009%26itemid%3D191736126568%26qu%3D1&exe=15841&ext=40914&es=0&nqc=EECABQBAABBCAkAICAAAAIQZAQQAAAABAAAAABAAAEAAAAAAAAAAAAAAAAABAKAACAAAAgAAAAAgAAAAAAAAIAAAAAAAAAAAAAAAEAAAABACAoAAAAACEAAAzgIAEACCAAABEAAAIAIAAAQAAAAAggAAAAAAAAEACAAIABAAAAAAAAAAAAAAAAAC&nqt=EECAFQBAABBCAkAICAAAAIQZAQQAAAABAAAABBAAAEAAAAAAAAAAAAAAAAABAKAACAAAAgAAAAAgAAAAABAAIAAAAAAAAAAAAAAAEAAAABACAoAEAAACEAAAzgIAEACCAAABEAAAIAIAAAQAAAAAggAAAAACAAkACAAIABAAAAAAAAAAAAAAAAAC&ec=1&sojTags=es=es,nqc=nqc,nqt=nqt,ec=ec,exe=exe,ext=ext,bu=bu
+  - Buy
+    - Date: Tue, Apr 11, 2017 at 2:31 AM
+    - Cost: USD 0.76 (AU 1.00)
+    - eBay item ID: 191736126568
+    + Delivery: 
+  + Install
 - 5V 3.8A Regulated Switching Power Supply - Silver
   - Technical specification
     - URL: http://www.dx.com/p/145841
@@ -31,18 +38,7 @@ Label:
     - Date: Fri, Aug 9, 2013 at 8:24 AM
     - Cost: USD 8.40
     - DX item ID: 130808001077185863
-  - Delivery
-    - Date: 2013-mm-dd
-  - Install
-- HC-SR04 Ultrasonic Sensor Distance Measuring Module
-  - Technical specification
-    - URL: http://www.dx.com/p/133696
-  - Buy
-    - Date: Thu, Sep 12, 2013 at 3:40 PM
-    - Cost: USD 3.10
-    - DX item ID: 130912001018416247
-  - Delivery
-    - Date: 2013-mm-dd
+    - Delivery: 2013-mm-dd
   - Install
 - Arduino Compatible 2-Channel Motor Driver Shield
   - Technical specification
@@ -51,8 +47,25 @@ Label:
     - Date: Mon, Sep 24, 2012 at 5:47 PM
     - Cost: USD 11.50
     - DX item ID: 120924001083816548
-  - Delivery
-    - Date: 2012-mm-dd
+    - Delivery: 2012-mm-dd
   - Install
+- RLRDuino (Arduino Uno R3 compatible)
+  - Technical specification
+    - URL: http://rlrobotics.com/en/portfolio-item/rlrduinoen/
+  - Buy
+    - Date: Thu, Aug 9, 2012 at 1:45 AM
+    - Cost: USD 20.74 (BRL 65.00)
+    - RLRobotics item ID: 
+    - Delivery: Thu, Aug 9, 2012 at 1:45 AM
+  - Install
++ Mini 650nm 5mW 5V Laser Dot Diode Module Head
+  - Technical specification
+    - URL: http://www.ebay.com/itm/5Pcs-Mini-650nm-5mW-5V-Laser-Dot-Diode-Module-Head-/381375065752?hash=item58cbb9ae98:g:ZAgAAOSwo8hTnwNc
+  - Buy
+    - Date: 
+    - Cost: USD 0.198 (USD 0.99)
+    - eBay item ID: 381375065752
+    + Delivery: 
+  + Install
 
-Total cost: $27.66
+Total cost: $43.268

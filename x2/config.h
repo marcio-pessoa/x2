@@ -41,10 +41,13 @@ const byte sensors_timer = 2;  // seconds
 const byte standby_timer = 1;  // minute
 
 // Debug mode
-bool debug = false;
+bool debug_mode = false;
 
 // Serial speed: 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200
 const unsigned long serial_speed = 115200;
 
 // Move done
 bool done = true;
+
+// 
+const float FLIMIT = 340282350000000000000000000000000000000;

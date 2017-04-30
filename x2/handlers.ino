@@ -74,14 +74,14 @@ void HealthCheckHandler() {
                                0, 100));  // To (minimum and maximum)
     // Power off on high temperature
     if (temperature.status() == CRITICAL) {
-      if (debug) CommandM91();
+      if (debug_mode) CommandM91();
       CommandM18();  // Detach motors
       CommandM72();  // Laser off
-      CommandM82();  // Power off
+      CommandM81();  // Power off
     }
     // Report fan on high speed
     if (fan.status() == CRITICAL) {
-      if (debug) CommandM90();
+      if (debug_mode) CommandM90();
     }
     // Join alarm status
     byte general_status = UNKNOWN;
@@ -149,7 +149,7 @@ void PowerHandler() {
     if (isAllDone() and !standby_done) {
       standby_done = true;
       standby_status = false;
-      CommandM82();  // Power off
+      CommandM81();  // Power off
       // Serial.println("Done.");
     }
   }

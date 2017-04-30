@@ -2,13 +2,38 @@ KANBAN, x2 Mark I - Two Axes Platform, KANBAN file
 
 BACKLOG
 + Mechanics
+  * Tool
+    * Research connector
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Build support
+  * Tool
+    * HC-SR04 - Ultrasonic Sensor
+      * Build support
+      * Laser
 + Electronics
+  * Tool
+    * Research connector
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Cabling
+    * HC-SR04 - Ultrasonic Sensor
+      * Cabling
+      * Laser
+        * Cabling
 + Software
   * Firmware (Arduino)
+    * Tool
+      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+        * Develop library and integration with x2
+    * PowerHandler()
+      * Bug: Standby, falha ao ser acionado pela segunda vez.
+      * Bug: Standby, falha ao realizar comando G28.
     * Commands
-      * 0
-        * Revisar nomenclatura
-        * Revisar função
+        * Revisar implementação
+      * G2
+        * Revisar implementação
+          * Reference
+            * URL: https://www.marginallyclever.com/2014/03/how-to-improve-the-2-axis-cnc-gcode-interpreter-to-understand-arcs/
+      * G3
         * Revisar implementação
       * G6
         * Revisar nomenclatura
@@ -19,16 +44,10 @@ BACKLOG
         * Revisar função
         * Revisar implementação
       * G28
-        * Revisar nomenclatura
-        * Revisar função
         * Revisar implementação
       * G90
-        * Revisar nomenclatura
-        * Revisar função
         * Revisar implementação
       * G91
-        * Revisar nomenclatura
-        * Revisar função
         * Revisar implementação
       * G132
         * Revisar nomenclatura
@@ -78,10 +97,6 @@ BACKLOG
         * Revisar nomenclatura
         * Revisar função
         * Revisar implementação
-      * M88
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
       * M89
         * Revisar nomenclatura
         * Revisar função
@@ -117,51 +132,38 @@ BACKLOG
   * Slic3r
     * Configure
 + Video
-  * Desenhando imagens Gcode e exibindo imagens de fotografias de longa
-    exposição
+  * The crazy cat
+    * Mover o laser para deixar um gato louco.
+  * Laser draw
+    * Desenhando imagens Gcode e exibindo imagens de fotografias de longa
+    exposição.
 
 TODO
 + Mechanics
   * Tool
+    * Research connector
     * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Build support
+      * Design support
 + Electronics
-  * Tool
-    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Cabling
 + Software
   * Firmware (Arduino)
     * Commands
-      * M80
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M81
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M82
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
       * G0
         * Revisar implementação
       * G1
         * Revisar implementação
-      * G2
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * G3
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-    * Tool
-      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-        * Develop library and integration with x2
-    * PowerHandler()
-      * Bug: Standby, falha ao ser acionado pela segunda vez.
-      * Bug: Standby, falha ao realizar comando G28.
+
+http://reprap.org/wiki/G-code#G2_.26_G3:_Controlled_Arc_Move
+https://en.wikipedia.org/wiki/G-code#V
+
+
+
+
+  * Odd Scanner
+    * csv2png
+      * Ajust image dimensions to minimum and maximum coordenates in csv file.
+      * Verify files before read or write.
+      * Generate images on the fly
 
 IN PROGRESS
 + Mechanics
@@ -169,8 +171,20 @@ IN PROGRESS
 + Software
   * Firmware (Arduino)
     * Commands
-      * G1
-        * Bug: "G1 X0 Y0" is not working.
+      * M80
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        * URL: http://reprap.org/wiki/G-code#M80:_ATX_Power_On
+        * URL: http://forums.reprap.org/read.php?219,132664
+      * M81
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M88
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
 
 TESTING
 + Mechanics
@@ -178,12 +192,29 @@ TESTING
 + Software
   * Firmware (Arduino)
     * Commands
-      * G1
-        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
+      * 0
+        * Revisar nomenclatura
+        * Revisar função
+      * G2
+        * Revisar nomenclatura
+        * Revisar função
+      * G3
+        * Revisar nomenclatura
+        * Revisar função
+      * G28
+        * Revisar nomenclatura
+        * Revisar função
+      * G90
+        * Revisar nomenclatura
+        * Revisar função
+      * G91
+        * Revisar nomenclatura
+        * Revisar função
       * M18
         * Verificar se retorno do comando está correto.
   * Odd Scanner
-    * Write program to generate Odd Scanner G-code files to be used on xC.
+    * gcodegen
+      * Write program to generate Odd Scanner G-code files to be used on xC.
 
 DONE
 + Mechanics
@@ -204,6 +235,9 @@ DONE
       * G1
         * Revisar nomenclatura
         * Revisar função
+        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
+        * Bug: "G1 X0 Y0" is not working.
+          > Criei a constante FLIMIT que servirá de referência
       * M0
         * Revisar nomenclatura
         * Revisar função
@@ -261,6 +295,12 @@ WON'T DO
 + Electronics
 + Software
   * Firmware (Arduino)
+    * Commands
+      * M82
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        > 2017-04-04 - Deprecated
     * Usar expressões regulares para interpretar os comandos recebidos com
       começo, meio e fim:
       * Exemplo:

@@ -27,7 +27,7 @@ Project x2("x2",  // Platform
            "I",  // Mark
            "Two Axes Platform",  // Name
            "0.14b",  // Version
-           "2017-03-06",  // Version date
+           "2017-03-22",  // Version date
            "1",  // Serial number
            "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License

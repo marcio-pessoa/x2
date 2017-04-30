@@ -14,25 +14,10 @@
  */
 
 
-/*
- * 
- * To do list
- * 
- * - Verify files before read or/and write
- * 
- */
-
-
-/*
- *
- * Variables definition
- *
- */
-
 // Program information
 {
 	$ProgramName = "csv2png";
-	$ProgramDescription="Convert a CSV file from Depp Viewer into a PNG image.";
+	$ProgramDescription="Convert a CSV file from Odd Scanner into a PNG image.";
 	$ProgramVersion = "0.01b";
 	$ProgramYear = "2013";
 	$ContactInformation = "marcio.pessoa@sciemon.com";
@@ -44,7 +29,6 @@
 	$Warning = 1;
 	$Critical = 2;
 	$Unknown = 3;
-	
 	$max_depth = 0;
 }
 
@@ -56,7 +40,6 @@
 	$shortopts .= "d";
 	$shortopts .= "i:";
 	$shortopts .= "o:";
-
 	// Define long command line options (ANSI)
 	$longopts = array("help",
 			  "version",
@@ -72,20 +55,15 @@
 	if (!is_array($options) ) { 
 		$help = true;
 	} 
-
 	// Variable: $debug (bool)
 	$debug = ( isset($options['d']) || isset($options['debug']) ) ? true : false;
-	
 	// Variable: $help (bool)
 	$help = ( isset($options['h']) || isset($options['help']) ) ? true : false;
-	
 	// Variable: $version (bool)
 	$version = ( isset($options['V']) || isset($options['version']) ) ? true : false;
-	
 	// Variable: $csvfile (string)
 	$csvfile = ( isset($options['i'] )) ? $options['i'] : null;
 	$csvfile = ( isset($options['csvfile'] )) ? $options['csvfile'] : $csvfile;
-
 	// Variable: $pngfile (string)
 	$pngfile = ( isset($options['o'] )) ? $options['o'] : null;
 	$pngfile = ( isset($options['pngfile'] )) ? $options['pngfile'] : $pngfile;
@@ -138,14 +116,11 @@ if ($csvfile) {
 // Generate output image
 if ($pngfile) {
 	$gd = imagecreatetruecolor($x, $y);
-		
 	for ($i = 0; $i <= $csv_content_last_register; $i++) {
 		$x = $csv_content[$i][0];
 		$y = $csv_content[$i][1];
 		$depth = $csv_content[$i][2];
-		
 		$color = imagecolorallocate($gd, $depth, $depth, $depth); 
-		
 		imagesetpixel($gd, $x, $y, $color);
 	}
 	imagefilter ($gd, IMG_FILTER_GRAYSCALE);
@@ -169,7 +144,6 @@ function show_usage () {
 	global $ProgramName;
 	global $ProgramDescription;
 	global $ContactInformation;
-	
 	print("$ProgramDescription
 
 Usage: $ProgramName -H [HOST] -u [URL]
@@ -193,7 +167,6 @@ function show_version () {
 	global $ProgramVersion;
 	global $ProgramYear;
 	global $ContactInformation;
-
 	print("$ProgramName $ProgramVersion
 Copyright (C) $ProgramYear Sciemon Technologies.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.

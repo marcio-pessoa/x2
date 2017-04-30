@@ -9,22 +9,125 @@
 char buffer[BUFFER_SIZE];
 int buffer_pointer = 0;
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 bool echo(String message) {
   Serial.print(String(message));
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 bool echoln(String message) {
   echo(message + "\n");
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
+void debug(String message) {
+  if (debug_mode) {
+    echo(message);
+  }
+}
+
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
+void debugln(String message) {
+  if (debug_mode) {
+    echoln(message);
+  }
+}
+
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 void status(bool i) {
   echoln(i == false ? F("ok") : F("nok"));
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 void GcodeReady() {
   buffer_pointer = 0;
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 void GcodeCheck() {
   while (Serial.available() > 0) {
     char c = Serial.read();
@@ -39,6 +142,19 @@ void GcodeCheck() {
   }
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 float GCodeNumber(char code, float val) {
   char *ptr = buffer;
   while(ptr && *ptr && ptr < buffer + buffer_pointer) {
@@ -50,6 +166,19 @@ float GCodeNumber(char code, float val) {
   return val;
 }
 
+/* 
+ * 
+ * Description
+ *   .
+ * 
+ *   ()
+ * 
+ * Parameters
+ *   none
+ * 
+ * Returns
+ *   void
+ */
 void GCodeParse() {
   bool retval = false;
   bool skip_status = false;
@@ -59,15 +188,15 @@ void GCodeParse() {
     case 'G':
       switch (number) {
         case 0:
-          retval = CommandG0(GCodeNumber('X', NULL),
-                             GCodeNumber('Y', NULL),
-                             GCodeNumber('Z', NULL));
+          retval = CommandG0(GCodeNumber('X', FLIMIT),
+                             GCodeNumber('Y', FLIMIT),
+                             GCodeNumber('Z', FLIMIT));
           skip_status = true;
           break;
         case 1:
-          retval = CommandG1(GCodeNumber('X', false),
-                             GCodeNumber('Y', false),
-                             GCodeNumber('Z', false));
+          retval = CommandG1(GCodeNumber('X', FLIMIT),
+                             GCodeNumber('Y', FLIMIT),
+                             GCodeNumber('Z', FLIMIT));
           skip_status = true;
           break;
         case 2:
@@ -123,14 +252,11 @@ void GCodeParse() {
         case 70:
           CommandM70();
           break;
-        // case 80:
-          // CommandM80();
-          // break;
         case 80:
-          retval = CommandM81();
+          retval = CommandM80();
           break;
         case 81:
-          retval = CommandM82();
+          retval = CommandM81();
           break;
         case 15:
           CommandM15();
