@@ -6,6 +6,16 @@
 
 bool AxesHandler() {
   // Don't move axes if system is in CRITICAL state
+  if (general_status == CRITICAL) {
+    return true;
+  }
+  // Don't move axes if power is down
+  if (!digitalRead(power_sensor_pin) and done == false) {
+    done = true;
+    status(true);
+    return true;
+  }
+  // Abandon handle if power if down
   if (!digitalRead(power_sensor_pin)) {
     return true;
   }
@@ -84,7 +94,6 @@ void HealthCheckHandler() {
       if (debug_mode) CommandM90();
     }
     // Join alarm status
-    byte general_status = UNKNOWN;
     if (temperature.status() == OK and
         fan.status() == OK) {
       general_status = OK;

@@ -1,7 +1,10 @@
 CHANGELOG, x2 Mark I - Two Axes Platform, Change log file
 
+2017-05-15
+        * Improvement: Added power detection before any move command.
+
 2017-04-30
-        * Improvement: More documentation
+        * Improvement: More documentation.
 
 2017-03-13
         * Bug fix: Command "G1 X0 Y0" was not working.

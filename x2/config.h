@@ -40,6 +40,9 @@ const byte health_check_timer = 2;  // seconds
 const byte sensors_timer = 2;  // seconds
 const byte standby_timer = 1;  // minute
 
+// System status (initial state)
+byte general_status = UNKNOWN;
+
 // Debug mode
 bool debug_mode = false;
 

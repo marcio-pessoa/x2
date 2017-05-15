@@ -255,6 +255,9 @@ void CommandM70() {
  *   true: Position limit has exceeded
  */
 bool CommandG0(float x, float y, float z) {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
   if (x != FLIMIT) {
     done = false;
     x_axis.positionWrite(x);
@@ -340,6 +343,10 @@ bool CommandG0(float x, float y, float z) {
  *         1 - Position limit has exceeded.
  */
 bool CommandG1(float x, float y, float z) {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
+  //
   if (abs(y - y_axis.positionRead()) > abs(x - x_axis.positionRead())) {
     x_axis.delayWrite(round((float)(abs(y - y_axis.positionRead()) *
                                         y_axis.delayRead()) /
@@ -393,6 +400,9 @@ bool CommandG1(float x, float y, float z) {
  *   true: Invalid input
  */
 bool CommandG2(int x, int y, int i, int j) {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
   return false;
 }
 
@@ -410,6 +420,9 @@ bool CommandG2(int x, int y, int i, int j) {
  *   void
  */
 bool CommandG3(int x, int y) {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
   x_axis.delayWrite(x);
   y_axis.delayWrite(y);
   return false;
@@ -429,7 +442,11 @@ bool CommandG3(int x, int y) {
  *   void
  */
 bool CommandG28() {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
   done = false;
+  CommandG90();  // Absolute programming
   x_axis.delayWrite(2);
   y_axis.delayWrite(2);
   x_axis.positionWrite(x_axis.parkRead());
@@ -470,6 +487,9 @@ bool CommandM124() {
  *   void
  */
 bool CommandG6(int seconds) {
+  if (!digitalRead(power_sensor_pin)) {
+    return true;
+  }
   if (seconds > 0) {
     demonstration_period.set(seconds * 1000);
     return false;

@@ -148,17 +148,13 @@ TODO
 + Software
   * Firmware (Arduino)
     * Commands
+      * Revisar comandos baseado na seguinte documentação:
+        * http://reprap.org/wiki/G-code#G2_.26_G3:_Controlled_Arc_Move
+        *https://en.wikipedia.org/wiki/G-code#V
       * G0
         * Revisar implementação
       * G1
         * Revisar implementação
-
-http://reprap.org/wiki/G-code#G2_.26_G3:_Controlled_Arc_Move
-https://en.wikipedia.org/wiki/G-code#V
-
-
-
-
   * Odd Scanner
     * csv2png
       * Ajust image dimensions to minimum and maximum coordenates in csv file.
@@ -191,6 +187,10 @@ TESTING
 + Electronics
 + Software
   * Firmware (Arduino)
+    * axes_handle()
+      * Está armazenando os comandos (G0 X50)que foram inputados com o
+        dispositivo desligado, então, quando ligamos o dispositivo, os comandos
+        são executados, mas não deveriam.
     * Commands
       * 0
         * Revisar nomenclatura
