@@ -25,7 +25,7 @@ Arduino Uno pin designation table
 ║ 12 ║  12 ║ digital   ║ output    ║ Stepper drive                            ║
 ║ 13 ║  13 ║ digital   ║ output    ║ OK LED (status LED)                      ║
 ║ 14 ║   0 ║ analog    ║ input     ║ Temperature sensor (step motor driver)   ║
-║ 15 ║   1 ║ digital   ║ output    ║ X2_INTERFACE_D0 and X2_INTERFACE_A0      ║
+║ 15 ║   1 ║ A/D       ║ I/O       ║ X2_INTERFACE_D0 and X2_INTERFACE_A0      ║
 ║ 16 ║   2 ║ digital   ║ output    ║ Critical LED                             ║
 ║ 17 ║   3 ║ digital   ║ input     ║ Warning LED                              ║
 ║ 18 ║   4 ║ digital   ║ output    ║ Power relay                              ║
@@ -38,7 +38,7 @@ x2 interface pin designation table for Deep viewer
 ╠════╬═════════════════╬══════════════════════════════════════════════════════╣
 ║  1 ║ 1               ║ +5 Vcc                                               ║
 ║  2 ║ X2_INTERFACE_D1 ║ Ultrasonic sensor echo pin                           ║
-║  3 ║ X2_INTERFACE_D0 ║ Ultrasonic sensor trigger pin                        ║
+║  3 ║ X2_INTERFACE_D0 ║ Ultrasonic sensor trigger pin / IDMS pin             ║
 ║  4 ║ 4               ║ GND                                                  ║
 ╚════╩═════════════════╩══════════════════════════════════════════════════════╝
 

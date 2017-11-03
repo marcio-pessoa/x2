@@ -268,7 +268,7 @@ void GCodeParse() {
           retval = CommandM87();
           break;
         case 88:
-          retval = CommandM88();
+          retval = CommandM88(GCodeNumber('S', false));
           break;
         case 89:
           retval = CommandM89();
@@ -295,10 +295,6 @@ void GCodeParse() {
           Command0();
           break;
       }
-      break;
-    case '%':
-    case '(':
-      buffer_pointer = 1;
       break;
     default:
       if (buffer_pointer > 2) {

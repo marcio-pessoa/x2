@@ -21,7 +21,7 @@
  */
 void CommandM100(char letter = 0) {
   if (letter == 'G' or letter == 0) {
-    echoln(F("G01\tRapid positioning"));
+    echoln(F("G00\tRapid positioning"));
     echoln(F("G01\tLinear interpolation"));
     echoln(F("G02\tCircular interpolation, clockwise"));
     echoln(F("G03\tCircular interpolation, counterclockwise"));
@@ -32,14 +32,15 @@ void CommandM100(char letter = 0) {
     // echoln(F("G132\tCalibrate axes"));
   }
   if (letter == 'M' or letter == 0) {
+    echoln(F("M0\tCompulsory stop"));
     // echoln(F("M15\tSystem info"));
     // echoln(F("M17\tAttach motors"));
     // echoln(F("M18\tDetach motors; same as M84"));
     // echoln(F("M70\tLaser status"));
     // echoln(F("M03\tLaser on"));
     // echoln(F("M05\tLaser off"));
-    // echoln(F("M80\tPower on"));
-    // echoln(F("M81\tPower off"));
+    echoln(F("M80\tPower on"));
+    echoln(F("M81\tPower off"));
     // echoln(F("M86\tAxes information"));
     // echoln(F("M87\tIs all done?"));
     // echoln(F("M88\tDistance measure"));
@@ -72,9 +73,15 @@ bool CommandM87() {
   return false;
 }
 
-bool CommandM80a() {
-  if (debug_mode) {
+bool CommandM80a(bool display = true) {
+  if (display or debug_mode) {
     echo("Power status");
+  }
+  if (display and !debug_mode) {
+    echo(": ");
+    echoln(digitalRead(power_sensor_pin) ? "Yes" : "No");
+  }
+  if (debug_mode) {
     echoln(String("\n") +
            "  " + 
            power.nameRead() + ": " + (power.status() ? "On" : "Off") + "\n" +
@@ -99,10 +106,11 @@ bool CommandM80a() {
 bool CommandM80() {
   power.set(HIGH);
   for (byte i=0; i<10; i++) {
-    if (!CommandM80a()) {  // Power status
+    delay(100);
+    if (!CommandM80a(false)) {  // Power status
+      standby.reset();
       return false;
     }
-    delay(100);
   }
   return true;
 }
@@ -121,6 +129,12 @@ bool CommandM80() {
  *   void
  */
 bool CommandM81() {
+  CommandM0();  // Compulsory stop
+  CommandM72();  // Laser off
+  standby_done = true;
+  standby_status = false;
+  standby.reset();
+  standby.disable();
   power.set(LOW);
   return power.status();
 }
@@ -256,6 +270,8 @@ void CommandM70() {
  */
 bool CommandG0(float x, float y, float z) {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   if (x != FLIMIT) {
@@ -344,6 +360,8 @@ bool CommandG0(float x, float y, float z) {
  */
 bool CommandG1(float x, float y, float z) {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   //
@@ -401,6 +419,8 @@ bool CommandG1(float x, float y, float z) {
  */
 bool CommandG2(int x, int y, int i, int j) {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   return false;
@@ -421,6 +441,8 @@ bool CommandG2(int x, int y, int i, int j) {
  */
 bool CommandG3(int x, int y) {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   x_axis.delayWrite(x);
@@ -443,6 +465,8 @@ bool CommandG3(int x, int y) {
  */
 bool CommandG28() {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   done = false;
@@ -488,6 +512,8 @@ bool CommandM124() {
  */
 bool CommandG6(int seconds) {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   if (seconds > 0) {
@@ -512,12 +538,14 @@ bool CommandG6(int seconds) {
  */
 bool CommandG132() {
   if (!digitalRead(power_sensor_pin)) {
+    done = true;
+    status(true);
     return true;
   }
   echo("Calibrating");
   laser.off();
   int axis_delay = 2;
-  Serial.print(".");
+  echo(".");
   // Go to limit
   int i = 0;
   for (i=0; i<=1800; i++) {
@@ -529,30 +557,29 @@ bool CommandG132() {
     }
     delay(axis_delay);
   }
-  Serial.print(".");
+  echo(".");
   // Come back to center
   for (i=0; i<=840; i++) {
     if (i <= 840) {
       x_stepper.step(1, FORWARD, INTERLEAVE);
     }
-    if (i <= 640) {
+    if (i <= 390) {
       y_stepper.step(1, BACKWARD, INTERLEAVE);
     }
     delay(axis_delay);
   }
-  Serial.print(".");
+  echoln(".");
   x_stepper.release();
   x_axis.positionReset();
   y_stepper.release();
   y_axis.positionReset();
-  Serial.println(F(" Done."));
   return false;
 }
 
 /* 
  * 
  * Description
- *   .
+ *   Axes information.
  * 
  *   ()
  * 
@@ -584,18 +611,28 @@ bool CommandM86() {
  * Returns
  *   void
  */
-bool CommandM88() {
+bool CommandM88(bool sensor=false) {
+  float measure;
   CommandM72();  // Laser off
+  switch (sensor) {
+    case false:
+      measure = HC_SR04.read();
+      break;
+    case true:
+      measure = Sharp_GP2Y0A21YK0F.read();
+      // measure = Sharp_GP2Y0A21YK0F.distance();
+      break;
+  }
   echoln(String(x_axis.positionRead()) + "," +
                 y_axis.positionRead() + "," +
-                HC_SR04.read());
+                String(measure));
   return false;
 }
 
 /* 
  * 
  * Description
- *   .
+ *   Temperature information.
  * 
  *   ()
  * 
@@ -628,7 +665,7 @@ bool CommandM91() {
 /* 
  * 
  * Description
- *   .
+ *   Fan information.
  * 
  *   ()
  * 
@@ -652,10 +689,10 @@ bool CommandM90() {
   }
 }
 
-/* 
+/* CommandM89
  * 
  * Description
- *   .
+ *   Memory information.
  * 
  *   ()
  * 
@@ -672,7 +709,7 @@ bool CommandM89() {
   int percent = (float)used * 100 / total;
   // 
   Alarm memory(75, 85);
-  memory.nameWrite("MEMORY");
+  memory.nameWrite("Memory");
   memory.unitWrite("%");
   memory.check(percent);
   // 
@@ -701,18 +738,18 @@ bool CommandM89() {
  *   void
  */
 void CommandM15() {
-  CommandM92();  // 
-  CommandM89();  // 
-  CommandM80a();  // 
-  CommandM91();  // 
-  CommandM90();  // 
-  CommandM86();  // 
+  CommandM92();  // System information
+  CommandM89();  // Memory information
+  CommandM80a();  // Power status
+  CommandM91();  // Temperature information
+  CommandM90();  // Fan information
+  CommandM86();  // Axes information
 }
 
 /* 
  * 
  * Description
- *   .
+ *   System information.
  * 
  *   ()
  * 
@@ -736,7 +773,7 @@ void CommandM92() {
 /* CommandM0
  * 
  * Description
- *   Stop all axes.
+ *   Compulsory stop.
  * 
  *   CommandM0()
  * 

@@ -25,9 +25,12 @@ const byte fan_sensor_pin = 0;
 // Temperature
 const byte lm35_pin = 0;
 
-// Ultrasonic distance sensor
+// Ultrasonic distance measuring sensor
 const byte ultrasonic_trigger_pin = X2_INTERFACE_D0;
 const byte ultrasonic_echo_pin = X2_INTERFACE_D1;
+
+// Infrared distance measuring sensor
+const byte idms_pin = X2_INTERFACE_A0;
 
 // Laser
 const byte laser_pin = X2_INTERFACE_D0;

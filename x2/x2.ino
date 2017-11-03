@@ -16,20 +16,21 @@
 #include <Fan.h>          // Sciemon - Fan speed control
 #include <Temperature.h>  // Sciemon - Temperature Sensors
 #include <Axis.h>         // Sciemon - Motor axis
-#include <Ultrasonic.h>   // Sciemon - Ultrasonic distance sensor
-#include <Infrared.h>     // Sciemon - Infrared distance sensor
+#include <Ultrasonic.h>   // Sciemon - Ultrasonic distance measuring sensor
+#include <IDMS.h>         // Sciemon - Infrared distance measuring sensor
 #include "config.h"       // Sciemon - Configuration
 #include <AFMotor.h>      // Adafruit - Motor Shield
+// #include <SharpIR.h>      // Unoficial - Infrared distance measuring sensor
 #include <MemoryFree.h>   // 
 
 // Project definitions
 Project x2("x2",  // Platform
            "I",  // Mark
            "Two Axes Platform",  // Name
-           "0.14b",  // Version
-           "2017-03-22",  // Version date
+           "0.18b",  // Version
+           "2017-08-19",  // Version date
            "1",  // Serial number
-           "Copyright (c) 2012-2016 Marcio Pessoa",  // Owner
+           "Copyright (c) 2012-2017 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
            "http://pessoa.eti.br/",  // Website
            "Marcio Pessoa <marcio.pessoa@sciemon.com>");  // Contact
@@ -70,8 +71,12 @@ Timer demonstration_period(0, COUNTDOWN);
 // Laser
 Switch laser(laser_pin);
 
-// Ultrasonic distance sensor
+// Ultrasonic distance measuring sensor
 Ultrasonic HC_SR04;
+
+// Infrared distance measuring sensor
+IDMS Sharp_GP2Y0A21YK0F;
+// SharpIR Sharp_GP2Y0A21YK0F(idms_pin, 1080);
 
 // Axis
 Axis x_axis("x",   // Name
@@ -108,11 +113,14 @@ void setup() {
   power.nameWrite("Power relay");
   // Power supply DC detection
   pinMode(power_sensor_pin, INPUT);
+  // Standby is disabled by default
+  // standby.disable();
   // Laser
   laser.nameWrite("Laser");
   // Temperature
   lm35.attach(lm35_pin);
   temperature.nameWrite("Temperature");
+  temperature.unitWrite(" *C");
   // Fan
   fan_control.writeSpeed(100);
   // pinMode(fan_sensor_pin, INPUT_PULLUP);
@@ -122,6 +130,8 @@ void setup() {
   fan.unitWrite("%");
   // Ultrasonic distance measuring sensor
   HC_SR04.attach(ultrasonic_trigger_pin, ultrasonic_echo_pin);
+  // Infrared distance measuring sensor
+  Sharp_GP2Y0A21YK0F.attach(idms_pin);
   // Random number generator seed
   pinMode(random_Seed_pin, INPUT);
   randomSeed(analogRead(random_Seed_pin));
