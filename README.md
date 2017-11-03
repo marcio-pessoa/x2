@@ -7,40 +7,36 @@
 ## Electronics
 
 ### Arduino Uno pin designation table
-╔════╦═════╦═══════════╦═══════════╦══════════════════════════════════════════╗
-║ id ║ pin ║   type    ║ direction ║               description                ║
-╠════╬═════╬═══════════╬═══════════╬══════════════════════════════════════════╣
-║  0 ║   0 ║ digital   ║ input     ║ Serial communication                     ║
-║  1 ║   1 ║ digital   ║ output    ║ Serial communication                     ║
-║  2 ║   0 ║ interrupt ║ input     ║ Fan speed sensor                         ║
-║  3 ║   3 ║ digital   ║ output    ║ Stepper 1 (activation/speed control)     ║
-║  4 ║   4 ║ digital   ║ output    ║ Stepper drive                            ║
-║  5 ║   5 ║ digital   ║ output    ║ Stepper 2 (activation/speed control)     ║
-║  6 ║   6 ║ digital   ║ output    ║ Stepper 2 (activation/speed control)     ║
-║  7 ║   7 ║ digital   ║ output    ║ Stepper drive                            ║
-║  8 ║   8 ║ digital   ║ output    ║ Stepper drive                            ║
-║  9 ║   9 ║ PWM       ║ output    ║ X2_INTERFACE_D1 (PWM)                    ║
-║ 10 ║  10 ║ PWM       ║ output    ║ Fan speed control                        ║
-║ 11 ║  11 ║ digital   ║ output    ║ Stepper 1 (activation/speed control)     ║
-║ 12 ║  12 ║ digital   ║ output    ║ Stepper drive                            ║
-║ 13 ║  13 ║ digital   ║ output    ║ OK LED (status LED)                      ║
-║ 14 ║   0 ║ analog    ║ input     ║ Temperature sensor (step motor driver)   ║
-║ 15 ║   1 ║ A/D       ║ I/O       ║ X2_INTERFACE_D0 and X2_INTERFACE_A0      ║
-║ 16 ║   2 ║ digital   ║ output    ║ Critical LED                             ║
-║ 17 ║   3 ║ digital   ║ input     ║ Warning LED                              ║
-║ 18 ║   4 ║ digital   ║ output    ║ Power relay                              ║
-║ 19 ║   5 ║ digital   ║ input     ║ Power supply DC detection                ║
-╚════╩═════╩═══════════╩═══════════╩══════════════════════════════════════════╝
+ id | pin |   type    | direction |               description                
+----|-----|-----------|-----------|------------------------------------------
+  0 |   0 | digital   | input     | Serial communication                     
+  1 |   1 | digital   | output    | Serial communication                     
+  2 |   0 | interrupt | input     | Fan speed sensor                         
+  3 |   3 | digital   | output    | Stepper 1 (activation/speed control)     
+  4 |   4 | digital   | output    | Stepper drive                            
+  5 |   5 | digital   | output    | Stepper 2 (activation/speed control)     
+  6 |   6 | digital   | output    | Stepper 2 (activation/speed control)     
+  7 |   7 | digital   | output    | Stepper drive                            
+  8 |   8 | digital   | output    | Stepper drive                            
+  9 |   9 | PWM       | output    | X2_INTERFACE_D1 (PWM)                    
+ 10 |  10 | PWM       | output    | Fan speed control                        
+ 11 |  11 | digital   | output    | Stepper 1 (activation/speed control)     
+ 12 |  12 | digital   | output    | Stepper drive                            
+ 13 |  13 | digital   | output    | OK LED (status LED)                      
+ 14 |   0 | analog    | input     | Temperature sensor (step motor driver)   
+ 15 |   1 | A/D       | I/O       | X2_INTERFACE_D0 and X2_INTERFACE_A0      
+ 16 |   2 | digital   | output    | Critical LED                             
+ 17 |   3 | digital   | input     | Warning LED                              
+ 18 |   4 | digital   | output    | Power relay                              
+ 19 |   5 | digital   | input     | Power supply DC detection                
 
 ### x2 interface pin designation table for Deep viewer
-╔════╦═════════════════╦══════════════════════════════════════════════════════╗
-║ id ║      pin        ║                  Deep viewer pins                    ║
-╠════╬═════════════════╬══════════════════════════════════════════════════════╣
-║  1 ║ 1               ║ +5 Vcc                                               ║
-║  2 ║ X2_INTERFACE_D1 ║ Ultrasonic sensor echo pin                           ║
-║  3 ║ X2_INTERFACE_D0 ║ Ultrasonic sensor trigger pin / IDMS pin             ║
-║  4 ║ 4               ║ GND                                                  ║
-╚════╩═════════════════╩══════════════════════════════════════════════════════╝
+ id |      pin        |                  Deep viewer pins                    
+----|-----------------|------------------------------------------------------
+  1 | 1               | +5 Vcc                                               
+  2 | X2_INTERFACE_D1 | Ultrasonic sensor echo pin                           
+  3 | X2_INTERFACE_D0 | Ultrasonic sensor trigger pin / IDMS pin             
+  4 | 4               | GND                                                  
 
                                       +-----+
          +----[PWR]-------------------| USB |--+
