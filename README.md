@@ -1,12 +1,12 @@
-README, x2 Mark I - Two Axes Platform, Readme file
+# README, x2 Mark I - Two Axes Platform, Readme file
 
-1. Introduction
+## Introduction
 
-2. Mechanics
+## Mechanics
 
-3. Electronics
+## Electronics
 
-Arduino Uno pin designation table
+### Arduino Uno pin designation table
 ╔════╦═════╦═══════════╦═══════════╦══════════════════════════════════════════╗
 ║ id ║ pin ║   type    ║ direction ║               description                ║
 ╠════╬═════╬═══════════╬═══════════╬══════════════════════════════════════════╣
@@ -32,7 +32,7 @@ Arduino Uno pin designation table
 ║ 19 ║   5 ║ digital   ║ input     ║ Power supply DC detection                ║
 ╚════╩═════╩═══════════╩═══════════╩══════════════════════════════════════════╝
 
-x2 interface pin designation table for Deep viewer
+### x2 interface pin designation table for Deep viewer
 ╔════╦═════════════════╦══════════════════════════════════════════════════════╗
 ║ id ║      pin        ║                  Deep viewer pins                    ║
 ╠════╬═════════════════╬══════════════════════════════════════════════════════╣
@@ -70,9 +70,9 @@ x2 interface pin designation table for Deep viewer
           \_______________________/
                                 Source: http://busyducks.com/ascii-art-arduinos
 
-4. Software
+## Software
 
-4.1. Odd Scanner
+### Odd Scanner
 
 Use oddscanner program to generate a G-code file:
 
