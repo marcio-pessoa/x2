@@ -647,7 +647,7 @@ bool CommandM91() {
          temperature.status_name() + "): " +
          temperature.valueRead() +
          temperature.unitRead());
-  if (debug_mode)
+  if (debug_mode) {
     echoln("  Warning low: " +
            String(temperature.min_warningRead()) +
            temperature.unitRead() + "\n" +
@@ -660,6 +660,7 @@ bool CommandM91() {
            "  Critical high: " +
            String(temperature.max_criticalRead()) +
            temperature.unitRead());
+  }
 }
 
 /* 

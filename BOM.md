@@ -1,18 +1,15 @@
-BOM, x2 Mark I - Two Axes Platform, Bill of materials
+# BOM
+x2 Mark I - Two Axes Platform, Bill of materials
 
-Label:
-  Status '-': OK
-  Status '+': Pending
+| Quant | Description        | ID                 | Bought     | Delivered  | Unit | Charge | Taxes |   Cost |
+|-------|--------------------|--------------------|------------|------------|------|--------|-------|--------|
+|     1 | Power_supply       | 130808001077185863 | 2013-08-09 | 2013-mm-dd | each |   8.40 |  0.53 |   8.93 |
 
-- 5V 3.8A Regulated Switching Power Supply - Silver
-  - Technical specification
-    - URL: http://www.dx.com/p/145841
-  - Buy
-    - Date: Fri, Aug 9, 2013 at 8:24 AM
-    - Cost: USD 8.40
-    - DX item ID: 130808001077185863
-    - Delivery: 2013-mm-dd
-  - Install
+
+
+
+- 5V 3.8A Regulated Switching Power Supply
+
 - Arduino Compatible 2-Channel Motor Driver Shield
   - Technical specification
     - URL: http://www.dx.com/p/138600

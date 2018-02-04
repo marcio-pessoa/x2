@@ -1,4 +1,10 @@
-# README, x2 Mark I - Two Axes Platform, Readme file
+# x2 Mark I - Two Axes Platform
+
+[Change log](CHANGELOG.md)
+
+[Bill of materials](BOM.md)
+
+[Kanban](KANBAN.md)
 
 ## Introduction
 
