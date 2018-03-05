@@ -1,0 +1,359 @@
+- 'BACKLOG':
++ Mechanics
++ Electronics
++ Software
+  * Firmware (Arduino)
+    * PowerHandler()
+      * Bug: Standby, falha ao ser acionado pela segunda vez.
+      * Bug: Standby, falha ao realizar comando G28.
+    * Commands
+        * Revisar implementação
+      * G2
+        * Revisar implementação
+          * Reference
+            * URL: https://www.marginallyclever.com/2014/03/how-to-improve-the-2-axis-cnc-gcode-interpreter-to-understand-arcs/
+      * G3
+        * Revisar implementação
+      * G6
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G21
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * G28
+        * Revisar implementação
+      * G90
+        * Revisar implementação
+      * G91
+        * Revisar implementação
+      * G132
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M0
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M3
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M4
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M5
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M17
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M18
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M84
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M70
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M15
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M86
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M87
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M89
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M90
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M91
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M92
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M99
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M100
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M111
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M124
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+  * Slic3r
+    * Configure
++ Video
+  * The crazy cat
+    * Mover o laser para deixar um gato louco.
+  * Laser draw
+    * Desenhando imagens Gcode e exibindo imagens de fotografias de longa
+    exposição.
+
+TODO
++ Mechanics
+  * Tool
+    * Connector
+      * Research
+      * Install
++ Electronics
+  * Tool
+    * Connector
+      * Cabling
++ Software
+  * Firmware (Arduino)
+    * Tool
+      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+        * Bug: Reporting wrong distance.
+    * Commands
+      * Revisar comandos baseado na seguinte documentação:
+        * http://reprap.org/wiki/G-code#G2_.26_G3:_Controlled_Arc_Move
+        *https://en.wikipedia.org/wiki/G-code#V
+      * G6
+        * Use this command to send angle to axis
+          * See documentation: http://reprap.org/wiki/G-code#G6:_Direct_Stepper_Move
+      * M88
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+  * Odd Scanner
+    * csv2png
+      * Ajust image dimensions to minimum and maximum coordenates in csv file.
+      * Verify files before read or write.
+      * Generate images on the fly
+
+IN PROGRESS
++ Mechanics
++ Electronics
++ Software
+  * Firmware (Arduino)
+    * Bug "nok nok"
+      * Description:
+        * The problem occours when the system is idle, probably trying to enter
+          in stanby mode, but power is not turned on.
+    * Simulation:
+        $ xc terminal
+        Started at: '2017-06-18 23:39:11'
+        Loading configuration file...
+        Parsing JSON...
+        Device...
+            ID: x2
+            Project: x2 Mark I (Two Axes Platform)
+            Connectivity:
+                Serial: /dev/serial/by-id/usb-RLRduino__www.rlrobotics.ind.br__06f8_741363339323512171F0-if00 (115200 bps)
+                Network: None
+        Connecting...
+        Communication device: /dev/ttyACM0
+
+        x2 Mark I - Two Axes Platform, 0.16b (2017-06-18)
+        Copyright (c) 2012-2017 Marcio Pessoa
+        Compiled: Jun 18 2017 23:37:18
+        License: undefined. There is NO WARRANTY.
+        Website: http://pessoa.eti.br/
+        Contact: Marcio Pessoa <marcio.pessoa@sciemon.com>
+        nok
+        nok
+
+TESTING
++ Mechanics
+  * Tool
+    * HC-SR04 - Ultrasonic Sensor
+      * Install
+    * Laser
+      * Install
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Install
++ Electronics
+  * Tool
+    * HC-SR04 - Ultrasonic Sensor
+      * Cabling
+    * Laser
+      * Cabling
+    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+      * Cabling
++ Software
+  * Firmware (Arduino)
+    * Tool
+      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
+        * Develop library and integration with x2
+    * axes_handle()
+      * Está armazenando os comandos (G0 X50)que foram inputados com o
+        dispositivo desligado, então, quando ligamos o dispositivo, os comandos
+        são executados, mas não deveriam.
+    * Commands
+      * 0
+        * Revisar nomenclatura
+        * Revisar função
+      * G0
+        * Revisar implementação
+      * G1
+        * Revisar implementação
+      * G2
+        * Revisar nomenclatura
+        * Revisar função
+      * G3
+        * Revisar nomenclatura
+        * Revisar função
+      * G28
+        * Revisar nomenclatura
+        * Revisar função
+      * G90
+        * Revisar nomenclatura
+        * Revisar função
+      * G91
+        * Revisar nomenclatura
+        * Revisar função
+      * M18
+        * Verificar se retorno do comando está correto.
+      * M80
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        * URL: http://reprap.org/wiki/G-code#M80:_ATX_Power_On
+        * URL: http://forums.reprap.org/read.php?219,132664
+      * M81
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+  * Odd Scanner
+    * gcodegen
+      * Write program to generate Odd Scanner G-code files to be used on xC.
+
+DONE
++ Mechanics
++ Electronics
+  * External sensor cabling
+  * Mudar cabeamento do sensor para passar junto com o cabeamento do eixo y.
+    Para tanto dever ser usado os fios de um motor de passo queimado. Seria
+    interessante comprar um driver de motor de passo adicional para testes.
+  * Tool
+    * Bug: Laser and Ultrassonic is not working (probably cabling problem).
+    * Bug: Laser and Ultrassonic is not working (probably cabling problem).
++ Software
+  * Firmware (Arduino)
+    * Commands
+      * G0
+        * Revisar nomenclatura
+        * Revisar função
+      * G1
+        * Revisar nomenclatura
+        * Revisar função
+        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
+        * Bug: "G1 X0 Y0" is not working.
+          > Criei a constante FLIMIT que servirá de referência
+      * M0
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+      * M17
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        * Verificar se retorno do comando está correto.
+      * M18
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+          > 2017-02-28 - É necessário parar qualquer movimento antes de
+            desligar os motores, do contrário eles permanecerão se movendo e o
+            comando M18 não surtirá efeito algum.
+    * AxesHandler()
+      * Informar quando um comando de movimento for concluído.
+        > Acredito que isso pode ser feito no AxesHandler() que pode emitir
+          uma mensagem via echoln() quando todos os eixos pararem após um
+          movimento.
+    * PowerHandler()
+      * Auto power off
+        * Timeout 5 minutos
+          1. Turn off step motors
+          2. Turn off laser
+          3. Turn off relay
+          > 2015-06-07 - A definição do objeto standby pela classe Timer aceita
+            como valor de entrada 10 * 1000, porém não aceita um valor como
+            300 * 1000. Isso precisa ser investigado e corrigido.
+        * command_relay
+          * park
+          * recolher eixo y para posição 450
+      * Transformar command_power num handle, pois mesmo com tantos testes o
+        command power ainda apresenta comportamento inadequado.
+    * Presentation
+      * Definir padrão para retorno dos comandos
+    * command_random
+      > 2014-11-27 - Inicia a geração de posições aleatórias para os eixos
+        x e y
+    * Sistema de proteção do driver do motor de passo pelo aumento da
+      temperatura
+    * Notification
+      * Melhorar a notificação por leds.
+        > 2014-11-21 - Na função NotificationHandler deve haver somente:
+          ok_led.blink();
+          warning_led.blink();
+          critical_led.blink();
+        * Em algum outro lugar a frequencia de blink dos leds deve ser
+          altarada.
+        * Em algum outro lugar os leds devem ser habilitados ou desabilitados.
+
+WON'T DO
++ Mechanics
++ Electronics
++ Software
+  * Firmware (Arduino)
+    * Commands
+      * M82
+        * Revisar nomenclatura
+        * Revisar função
+        * Revisar implementação
+        > 2017-04-04 - Deprecated
+    * Usar expressões regulares para interpretar os comandos recebidos com
+      começo, meio e fim:
+      * Exemplo:
+        Distance 33.23 cm
+        ^        ^     ^
+        |        |     |
+        |        |     \---- Fim
+        |        |
+        |        \---- Meio
+        |
+        \---- Começo
+      * Onde:
+        * Começo: Constante
+        * Meio: Variável, validado por expressões regulares
+        * Fim:  Contante
+      > 2017-03-08 - Não se aplica ao G-code
+    * Implementar a função message_debug com o nome message
+      * Dois níveis de mensagens:
+        * normal
+        * debug
+      > 2017-03-08 - Não se aplica ao G-code
+    * Soft Limits
+      * Quando 0 comando "r" determinar que um eixo se mova para além de um
+        soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
+        Maximum limit exceeded on axis 1
+        > 2017-03-08 - Não se aplica ao G-code
