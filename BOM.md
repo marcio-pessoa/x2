@@ -3,12 +3,9 @@ x2 Mark I - Two Axes Platform, Bill of materials
 
 | Quant | Description        | ID                 | Bought     | Delivered  | Unit | Charge | Taxes |   Cost |
 |-------|--------------------|--------------------|------------|------------|------|--------|-------|--------|
-|     1 | Power_supply       | 130808001077185863 | 2013-08-09 | 2013-mm-dd | each |   8.40 |  0.53 |   8.93 |
+|     1 | PSU_5VDC/3.8A      | 130808001077185863 | 2013-08-09 | 2013-mm-dd | each |   8.40 |  0.53 |   8.93 |
+|     1 | Arduino_Uno_R3     | -                  | 2012-08-09 | 2012-08-09 | each |  20.74 |  0.00 |  20.74 |
 
-
-
-
-- 5V 3.8A Regulated Switching Power Supply
 
 - Arduino Compatible 2-Channel Motor Driver Shield
   - Technical specification
@@ -18,15 +15,6 @@ x2 Mark I - Two Axes Platform, Bill of materials
     - Cost: USD 11.50
     - DX item ID: 120924001083816548
     - Delivery: 2012-mm-dd
-  - Install
-- RLRDuino (Arduino Uno R3 compatible)
-  - Technical specification
-    - URL: http://rlrobotics.com/en/portfolio-item/rlrduinoen/
-  - Buy
-    - Date: Thu, Aug 9, 2012 at 1:45 AM
-    - Cost: USD 20.74 (BRL 65.00)
-    - RLRobotics item ID: 
-    - Delivery: Thu, Aug 9, 2012 at 1:45 AM
   - Install
 - GP2Y0A21YK0F Sharp IR Analog Distance Sensor Distance
   - Technical specification
@@ -91,5 +79,10 @@ x2 Mark I - Two Axes Platform, Bill of materials
     - eBay item ID: 222111255325  
     - Delivery: 2017-07-dd
   - Install
+
+Currency: USD
+
+International IOF: 6.38%
+Domestic IOF: 0.38%
 
 Total cost: $46.4966
