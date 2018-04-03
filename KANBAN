@@ -1,7 +1,5 @@
 - 'BACKLOG':
-+ Mechanics
-+ Electronics
-+ Software
+  - (Software) 
   * Firmware (Arduino)
     * PowerHandler()
       * Bug: Standby, falha ao ser acionado pela segunda vez.
@@ -319,41 +317,3 @@ DONE
         * Em algum outro lugar a frequencia de blink dos leds deve ser
           altarada.
         * Em algum outro lugar os leds devem ser habilitados ou desabilitados.
-
-WON'T DO
-+ Mechanics
-+ Electronics
-+ Software
-  * Firmware (Arduino)
-    * Commands
-      * M82
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-        > 2017-04-04 - Deprecated
-    * Usar expressões regulares para interpretar os comandos recebidos com
-      começo, meio e fim:
-      * Exemplo:
-        Distance 33.23 cm
-        ^        ^     ^
-        |        |     |
-        |        |     \---- Fim
-        |        |
-        |        \---- Meio
-        |
-        \---- Começo
-      * Onde:
-        * Começo: Constante
-        * Meio: Variável, validado por expressões regulares
-        * Fim:  Contante
-      > 2017-03-08 - Não se aplica ao G-code
-    * Implementar a função message_debug com o nome message
-      * Dois níveis de mensagens:
-        * normal
-        * debug
-      > 2017-03-08 - Não se aplica ao G-code
-    * Soft Limits
-      * Quando 0 comando "r" determinar que um eixo se mova para além de um
-        soft limit, deverá aparecer uma mensagem na tela: Soft limit (Warning):
-        Maximum limit exceeded on axis 1
-        > 2017-03-08 - Não se aplica ao G-code
