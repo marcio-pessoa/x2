@@ -1,319 +1,131 @@
 - 'BACKLOG':
-  - (Software) 
-  * Firmware (Arduino)
-    * PowerHandler()
-      * Bug: Standby, falha ao ser acionado pela segunda vez.
-      * Bug: Standby, falha ao realizar comando G28.
-    * Commands
-        * Revisar implementação
-      * G2
-        * Revisar implementação
-          * Reference
-            * URL: https://www.marginallyclever.com/2014/03/how-to-improve-the-2-axis-cnc-gcode-interpreter-to-understand-arcs/
-      * G3
-        * Revisar implementação
-      * G6
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * G21
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * G28
-        * Revisar implementação
-      * G90
-        * Revisar implementação
-      * G91
-        * Revisar implementação
-      * G132
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M0
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M3
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M4
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M5
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M17
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M18
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M84
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M70
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M15
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M86
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M87
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M89
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M90
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M91
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M92
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M99
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M100
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M111
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M124
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-  * Slic3r
-    * Configure
-+ Video
-  * The crazy cat
-    * Mover o laser para deixar um gato louco.
-  * Laser draw
-    * Desenhando imagens Gcode e exibindo imagens de fotografias de longa
-    exposição.
+  - (Software) Command G2 - Check code
+  - (Software) Command G3 - Check code
+  - (Software) Command G6 - Check name
+  - (Software) Command G6 - Check function
+  - (Software) Command G6 - Check code
+  - (Software) Command G21 - Check name
+  - (Software) Command G21 - Check function
+  - (Software) Command G21 - Check code
+  - (Software) Command G28 - Check code
+  - (Software) Command G90 - Check code
+  - (Software) Command G91 - Check code
+  - (Software) Command G132 - Check name
+  - (Software) Command G132 - Check function
+  - (Software) Command G132 - Check code
+  - (Software) Command M0 - Check name
+  - (Software) Command M0 - Check function
+  - (Software) Command M0 - Check code
+  - (Software) Command M3 - Check name
+  - (Software) Command M3 - Check function
+  - (Software) Command M3 - Check code
+  - (Software) Command M4 - Check name
+  - (Software) Command M4 - Check function
+  - (Software) Command M4 - Check code
+  - (Software) Command M5 - Check name
+  - (Software) Command M5 - Check function
+  - (Software) Command M5 - Check code
+  - (Software) Command M17 - Check name
+  - (Software) Command M17 - Check function
+  - (Software) Command M17 - Check code
+  - (Software) Command M18 - Check name
+  - (Software) Command M18 - Check function
+  - (Software) Command M18 - Check code
+  - (Software) Command M84 - Check name
+  - (Software) Command M84 - Check function
+  - (Software) Command M84 - Check code
+  - (Software) Command M86 - Check name
+  - (Software) Command M86 - Check function
+  - (Software) Command M86 - Check code
+  - (Software) Command M87 - Check name
+  - (Software) Command M87 - Check function
+  - (Software) Command M87 - Check code
+  - (Software) Command M90 - Check name
+  - (Software) Command M90 - Check function
+  - (Software) Command M90 - Check code
+  - (Software) Command M70 - Check name
+  - (Software) Command M70 - Check function
+  - (Software) Command M70 - Check code
+  - (Software) Command M15 - Check name
+  - (Software) Command M15 - Check function
+  - (Software) Command M15 - Check code
+  - (Software) Command M91 - Check name
+  - (Software) Command M91 - Check function
+  - (Software) Command M91 - Check code
+  - (Software) Command M92 - Check name
+  - (Software) Command M92 - Check function
+  - (Software) Command M92 - Check code
+  - (Software) Command M99 - Check name
+  - (Software) Command M99 - Check function
+  - (Software) Command M99 - Check code
+  - (Software) Command M100 - Check name
+  - (Software) Command M100 - Check function
+  - (Software) Command M100 - Check code
+  - (Software) Command M111 - Check name
+  - (Software) Command M111 - Check function
+  - (Software) Command M111 - Check code
+  - (Software) Command M124 - Check name
+  - (Software) Command M124 - Check function
+  - (Software) Command M124 - Check code
+  - (Software) Slic3r - Configure
+  - (Video) The crazy cat - Description: Mover o laser para deixar um gato louco
+  - (Video) Laser draw - Desenhando imagens G-code e exibindo imagens de fotografias de longa exposicao
 
-TODO
-+ Mechanics
-  * Tool
-    * Connector
-      * Research
-      * Install
-+ Electronics
-  * Tool
-    * Connector
-      * Cabling
-+ Software
-  * Firmware (Arduino)
-    * Tool
-      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-        * Bug: Reporting wrong distance.
-    * Commands
-      * Revisar comandos baseado na seguinte documentação:
-        * http://reprap.org/wiki/G-code#G2_.26_G3:_Controlled_Arc_Move
-        *https://en.wikipedia.org/wiki/G-code#V
-      * G6
-        * Use this command to send angle to axis
-          * See documentation: http://reprap.org/wiki/G-code#G6:_Direct_Stepper_Move
-      * M88
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-  * Odd Scanner
-    * csv2png
-      * Ajust image dimensions to minimum and maximum coordenates in csv file.
-      * Verify files before read or write.
-      * Generate images on the fly
+- 'TO DO':
+  - (Electronics) Tool Connector - Research
+  - (Electronics) Tool Connector - Install
+  - (Electronics) Tool Connector - Cabling
+  - (Software) Command M88 - Check name
+  - (Software) Command M88 - Check function
+  - (Software) Command M88 - Check code
 
-IN PROGRESS
-+ Mechanics
-+ Electronics
-+ Software
-  * Firmware (Arduino)
-    * Bug "nok nok"
-      * Description:
-        * The problem occours when the system is idle, probably trying to enter
-          in stanby mode, but power is not turned on.
-    * Simulation:
-        $ xc terminal
-        Started at: '2017-06-18 23:39:11'
-        Loading configuration file...
-        Parsing JSON...
-        Device...
-            ID: x2
-            Project: x2 Mark I (Two Axes Platform)
-            Connectivity:
-                Serial: /dev/serial/by-id/usb-RLRduino__www.rlrobotics.ind.br__06f8_741363339323512171F0-if00 (115200 bps)
-                Network: None
-        Connecting...
-        Communication device: /dev/ttyACM0
+- 'DOING':
+  - (Software) GP2Y0A21YK0F - Bug #3: Reporting wrong distance
 
-        x2 Mark I - Two Axes Platform, 0.16b (2017-06-18)
-        Copyright (c) 2012-2017 Marcio Pessoa
-        Compiled: Jun 18 2017 23:37:18
-        License: undefined. There is NO WARRANTY.
-        Website: http://pessoa.eti.br/
-        Contact: Marcio Pessoa <marcio.pessoa@sciemon.com>
-        nok
-        nok
+- 'TESTING':
+  - (Mechanics) HC-SR04 - Install
+  - (Mechanics) Laser - Install
+  - (Mechanics) GP2Y0A21YK0F - Install
+  - (Electronics) HC-SR04 - Cabling
+  - (Electronics) Laser - Cabling
+  - (Electronics) GP2Y0A21YK0F - Cabling
+  - (Software) GP2Y0A21YK0F - Develop library
+  - (Software) GP2Y0A21YK0F - Integrate with x2
+  - (Software) Command 0 - Check name
+  - (Software) Command 0 - Check function
+  - (Software) Command 0 - Check code
+  - (Software) Command G0 - Check code
+  - (Software) Command G1 - Check code
+  - (Software) Command G2 - Check name
+  - (Software) Command G2 - Check function
+  - (Software) Command G3 - Check name
+  - (Software) Command G3 - Check function
+  - (Software) Command G28 - Check name
+  - (Software) Command G28 - Check function
+  - (Software) Command G90 - Check name
+  - (Software) Command G90 - Check function
+  - (Software) Command G91 - Check name
+  - (Software) Command G91 - Check function
+  - (Software) Command M18 - Check return
+  - (Software) Command M80 - Check name
+  - (Software) Command M80 - Check function
+  - (Software) Command M80 - Check code
+  - (Software) Command M81 - Check name
+  - (Software) Command M81 - Check function
+  - (Software) Command M81 - Check code
 
-TESTING
-+ Mechanics
-  * Tool
-    * HC-SR04 - Ultrasonic Sensor
-      * Install
-    * Laser
-      * Install
-    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Install
-+ Electronics
-  * Tool
-    * HC-SR04 - Ultrasonic Sensor
-      * Cabling
-    * Laser
-      * Cabling
-    * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-      * Cabling
-+ Software
-  * Firmware (Arduino)
-    * Tool
-      * GP2Y0A21YK0F - Infrared Sensor Distance Measuring
-        * Develop library and integration with x2
-    * axes_handle()
-      * Está armazenando os comandos (G0 X50)que foram inputados com o
-        dispositivo desligado, então, quando ligamos o dispositivo, os comandos
-        são executados, mas não deveriam.
-    * Commands
-      * 0
-        * Revisar nomenclatura
-        * Revisar função
-      * G0
-        * Revisar implementação
-      * G1
-        * Revisar implementação
-      * G2
-        * Revisar nomenclatura
-        * Revisar função
-      * G3
-        * Revisar nomenclatura
-        * Revisar função
-      * G28
-        * Revisar nomenclatura
-        * Revisar função
-      * G90
-        * Revisar nomenclatura
-        * Revisar função
-      * G91
-        * Revisar nomenclatura
-        * Revisar função
-      * M18
-        * Verificar se retorno do comando está correto.
-      * M80
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-        * URL: http://reprap.org/wiki/G-code#M80:_ATX_Power_On
-        * URL: http://forums.reprap.org/read.php?219,132664
-      * M81
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-  * Odd Scanner
-    * gcodegen
-      * Write program to generate Odd Scanner G-code files to be used on xC.
-
-DONE
-+ Mechanics
-+ Electronics
-  * External sensor cabling
-  * Mudar cabeamento do sensor para passar junto com o cabeamento do eixo y.
-    Para tanto dever ser usado os fios de um motor de passo queimado. Seria
-    interessante comprar um driver de motor de passo adicional para testes.
-  * Tool
-    * Bug: Laser and Ultrassonic is not working (probably cabling problem).
-    * Bug: Laser and Ultrassonic is not working (probably cabling problem).
-+ Software
-  * Firmware (Arduino)
-    * Commands
-      * G0
-        * Revisar nomenclatura
-        * Revisar função
-      * G1
-        * Revisar nomenclatura
-        * Revisar função
-        * Mover-se pela linha da hipotenusa entre o ponto de origem e destino.
-        * Bug: "G1 X0 Y0" is not working.
-          > Criei a constante FLIMIT que servirá de referência
-      * M0
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-      * M17
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-        * Verificar se retorno do comando está correto.
-      * M18
-        * Revisar nomenclatura
-        * Revisar função
-        * Revisar implementação
-          > 2017-02-28 - É necessário parar qualquer movimento antes de
-            desligar os motores, do contrário eles permanecerão se movendo e o
-            comando M18 não surtirá efeito algum.
-    * AxesHandler()
-      * Informar quando um comando de movimento for concluído.
-        > Acredito que isso pode ser feito no AxesHandler() que pode emitir
-          uma mensagem via echoln() quando todos os eixos pararem após um
-          movimento.
-    * PowerHandler()
-      * Auto power off
-        * Timeout 5 minutos
-          1. Turn off step motors
-          2. Turn off laser
-          3. Turn off relay
-          > 2015-06-07 - A definição do objeto standby pela classe Timer aceita
-            como valor de entrada 10 * 1000, porém não aceita um valor como
-            300 * 1000. Isso precisa ser investigado e corrigido.
-        * command_relay
-          * park
-          * recolher eixo y para posição 450
-      * Transformar command_power num handle, pois mesmo com tantos testes o
-        command power ainda apresenta comportamento inadequado.
-    * Presentation
-      * Definir padrão para retorno dos comandos
-    * command_random
-      > 2014-11-27 - Inicia a geração de posições aleatórias para os eixos
-        x e y
-    * Sistema de proteção do driver do motor de passo pelo aumento da
-      temperatura
-    * Notification
-      * Melhorar a notificação por leds.
-        > 2014-11-21 - Na função NotificationHandler deve haver somente:
-          ok_led.blink();
-          warning_led.blink();
-          critical_led.blink();
-        * Em algum outro lugar a frequencia de blink dos leds deve ser
-          altarada.
-        * Em algum outro lugar os leds devem ser habilitados ou desabilitados.
+- 'DONE':
+  - (Software) Command G0 - Check name
+  - (Software) Command G0 - Check function
+  - (Software) Command G1 - Check name
+  - (Software) Command G1 - Check function
+  - (Software) Command G1 - Check code
+  - (Software) Command M0 - Check name
+  - (Software) Command M0 - Check function
+  - (Software) Command M0 - Check code
+  - (Software) Command M17 - Check name
+  - (Software) Command M17 - Check function
+  - (Software) Command M17 - Check code
+  - (Software) Command M18 - Check name
+  - (Software) Command M18 - Check function
+  - (Software) Command M18 - Check code
