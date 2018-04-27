@@ -81,13 +81,13 @@ Source: http://busyducks.com/ascii-art-arduinos
 
 Change to `oddscanner` work directory:
 
-``` sh
+``` bash
 cd oddscanner
 ```
 
 Use `oddscanner` to generate a G-code file:
 
-``` sh
+``` bash
 ./oddscanner 100 80 > example.gcode
 ```
   
@@ -99,13 +99,13 @@ Where:
   
 After file generation, use xC to run G-code file:
 
-``` sh
+``` bash
 xc cli --id x2 -p example.gcode -o example.csv
 ```
 
 A CSV file will be generated, this file can be converted to a picture with `csv2png`:
 
-``` sh
+``` bash
 ./csv2png -i example.csv -o example.png -d
 ```
 
