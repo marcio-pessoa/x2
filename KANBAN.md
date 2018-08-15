@@ -1,27 +1,3 @@
 # KANBAN
-x2 Mark I - Two Axes Platform
-
-|**BACKLOG**                                                                                        |**TO DO**                              |**DOING**                    |**TESTING**                                |**DONE**                               |
-|:--------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------|:------------------------------------------|:--------------------------------------|
-|(Software) Command G2 - Check code                                                                 |(Electronics) Tool Connector - Research|(Software) GP2Y0A21YK0F - Bug|(Mechanics) HC-SR04 - Install              |(Software) Command G0 - Check name     |
-|(Software) Command G3 - Check code                                                                 |(Electronics) Tool Connector - Install |                             |(Mechanics) Laser - Install                |(Software) Command G0 - Check function |
-|(Software) Command G6 - Check name                                                                 |(Electronics) Tool Connector - Cabling |                             |(Mechanics) GP2Y0A21YK0F - Install         |(Software) Command G1 - Check name     |
-|(Software) Command G6 - Check function                                                             |(Software) Command M88 - Check name    |                             |(Electronics) HC-SR04 - Cabling            |(Software) Command G1 - Check function |
-|(Software) Command G6 - Check code                                                                 |(Software) Command M88 - Check function|                             |(Electronics) Laser - Cabling              |(Software) Command G1 - Check code     |
-|(Software) Command G21 - Check name                                                                |(Software) Command M88 - Check code    |                             |(Electronics) GP2Y0A21YK0F - Cabling       |(Software) Command M0 - Check name     |
-|(Software) Command G21 - Check function                                                            |                                       |                             |(Software) GP2Y0A21YK0F - Develop library  |(Software) Command M0 - Check function |
-|(Software) Command G21 - Check code                                                                |                                       |                             |(Software) GP2Y0A21YK0F - Integrate with x2|(Software) Command M0 - Check code     |
-|(Software) Command G28 - Check code                                                                |                                       |                             |(Software) Command 0 - Check name          |(Software) Command M17 - Check name    |
-|(Software) Command G90 - Check code                                                                |                                       |                             |(Software) Command 0 - Check function      |(Software) Command M17 - Check function|
-|(Software) Command G91 - Check code                                                                |                                       |                             |(Software) Command 0 - Check code          |(Software) Command M17 - Check code    |
-|(Software) Command G132 - Check name                                                               |                                       |                             |(Software) Command G0 - Check code         |(Software) Command M18 - Check name    |
-|(Software) Command G132 - Check function                                                           |                                       |                             |(Software) Command G1 - Check code         |(Software) Command M18 - Check function|
-|(Software) Command G132 - Check code                                                               |                                       |                             |(Software) Command G2 - Check name         |(Software) Command M18 - Check code    |
-|(Software) Command M0 - Check name                                                                 |                                       |                             |(Software) Command G2 - Check function     |                                       |
-|(Software) Command M0 - Check function                                                             |                                       |                             |(Software) Command G3 - Check name         |                                       |
-|(Software) Command M0 - Check code                                                                 |                                       |                             |(Software) Command G3 - Check function     |                                       |
-|(Software) Command M3 - Check name                                                                 |                                       |                             |(Software) Command G28 - Check name        |                                       |
-|(Software) Command M3 - Check function                                                             |                                       |                             |(Software) Command G28 - Check function    |                                       |
-|(Software) Command M3 - Check code                                                                 |                                       |                             |(Software) Command G90 - Check name        |                                       |
-*51 rows omitted*
+xc - Axes Controller
 
