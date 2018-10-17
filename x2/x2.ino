@@ -3,22 +3,22 @@
  * This sketch was developed and tested on: Arduino Uno
  * To work on other Arduino models, some adaptations may be necessary.
  * 
- * Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
+ * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
 
 #include <Arduino.h>      // Arduino - Main library
-#include <Project.h>      // Sciemon - Basic project definitions
-#include <Blinker.h>      // Sciemon - Blink leds nicely
-#include <Timer.h>        // Sciemon - Timer library with nice features
-#include <Alarm.h>        // Sciemon - Manage alarms
-#include <Switch.h>       // Sciemon - Switch manipulation
-#include <Fan.h>          // Sciemon - Fan speed control
-#include <Temperature.h>  // Sciemon - Temperature Sensors
-#include <Axis.h>         // Sciemon - Motor axis
-#include <Ultrasonic.h>   // Sciemon - Ultrasonic distance measuring sensor
-#include <IDMS.h>         // Sciemon - Infrared distance measuring sensor
-#include "config.h"       // Sciemon - Configuration
+#include <Project.h>      // Marcio Pessoa - Basic project definitions
+#include <Blinker.h>      // Marcio Pessoa - Blink leds nicely
+#include <Timer.h>        // Marcio Pessoa - Timer library with nice features
+#include <Alarm.h>        // Marcio Pessoa - Manage alarms
+#include <Switch.h>       // Marcio Pessoa - Switch manipulation
+#include <Fan.h>          // Marcio Pessoa - Fan speed control
+#include <Temperature.h>  // Marcio Pessoa - Temperature Sensors
+#include <Axis.h>         // Marcio Pessoa - Motor axis
+#include <Ultrasonic.h>   // Marcio Pessoa - Ultrasonic distance measuring
+#include <IDMS.h>         // Marcio Pessoa - Infrared distance measuring
+#include "config.h"       // Marcio Pessoa - Configuration
 #include <AFMotor.h>      // Adafruit - Motor Shield
 // #include <SharpIR.h>      // Unoficial - Infrared distance measuring sensor
 #include <MemoryFree.h>   // 
@@ -33,7 +33,7 @@ Project x2("x2",  // Platform
            "Copyright (c) 2012-2017 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
            "http://pessoa.eti.br/",  // Website
-           "Marcio Pessoa <marcio.pessoa@sciemon.com>");  // Contact
+           "Marcio Pessoa <marcio.pessoa@gmail.com>");  // Contact
 
 // OK LED (Status LED)
 Blinker ok_led(led_ok_pin);

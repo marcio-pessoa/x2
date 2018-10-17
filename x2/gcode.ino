@@ -1,6 +1,6 @@
 /* gcode.ino, x2 Mark I - Two Axes Platform, G-code parser sketch file
  * 
- * Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
+ * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
 

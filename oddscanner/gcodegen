@@ -3,7 +3,7 @@
 # oddscanner, x2 Mark I - Two Axes Platform - Odd Scanner
 # Odd Scanner G-code Generator
 # 
-# Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
+# Author: Márcio Pessoa <marcio.pessoa@gmail.com>
 # Contributors: none
 # 
 # Description:
@@ -27,7 +27,7 @@ DISCLA=';oddscanner 0.01b (2017-03-09)
 ;Copyright (c) 2013-2017 Marcio Pessoa
 ;License: undefined. There is NO WARRANTY.
 ;Website: http://pessoa.eti.br/
-;Contact: Marcio Pessoa <marcio.pessoa@sciemon.com>'
+;Contact: Marcio Pessoa <marcio.pessoa@gmail.com>'
 
 # User input variables
 X=$1

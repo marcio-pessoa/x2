@@ -9,7 +9,7 @@
  * 2013-11-23 - Command line options correction
  * 2013-11-22 - Scratch version
  *
- * Marcio Pessoa <marcio.pessoa@sciemon.com>
+ * Marcio Pessoa <marcio.pessoa@gmail.com>
  *
  */
 
@@ -20,7 +20,7 @@
 	$ProgramDescription="Convert a CSV file from Odd Scanner into a PNG image.";
 	$ProgramVersion = "0.01b";
 	$ProgramYear = "2013";
-	$ContactInformation = "marcio.pessoa@sciemon.com";
+	$ContactInformation = "marcio.pessoa@gmail.com";
 }
 
 // General variables

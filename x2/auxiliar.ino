@@ -1,6 +1,6 @@
 /* auxiliar.ino, x2 Mark I - Two Axes Platform, Arduino auxiliar sketch file
  * 
- * Author: Márcio Pessoa <marcio.pessoa@sciemon.com>
+ * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
 
