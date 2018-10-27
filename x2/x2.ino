@@ -76,7 +76,7 @@ Ultrasonic HC_SR04;
 
 // Infrared distance measuring sensor
 IDMS Sharp_GP2Y0A21YK0F;
-// SharpIR Sharp_GP2Y0A21YK0F(idms_pin, 1080);
+// SharpIR Sharp_GP2Y0A21YK0F(idms_pin, 1080);  // TODO: Uninstall this lib
 
 // Axis
 Axis x_axis("x",   // Name
