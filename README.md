@@ -1,5 +1,8 @@
 # x2 Mark I - Two Axes Platform
 
+## Videos
+Watch this projects videos on [YouTube Playlist].
+
 [Change log](CHANGELOG.md)
 
 [Bill of materials](BOM.md)
@@ -111,3 +114,4 @@ A CSV file will be generated, this file can be converted to a picture with `csv2
 
 ---
 [Arduino Uno]: https://www.arduino.cc/en/Main/arduinoBoardUno/#techspecs
+[YouTube Playlist]: https://www.youtube.com/watch?v=V8XMp_TPpIc&list=PLs1JZHyVhlZUKraWlGDl2sSLEq4o7M2Q1
