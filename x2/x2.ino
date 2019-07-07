@@ -32,7 +32,7 @@ Project x2("x2",  // Platform
            "1",  // Serial number
            "Copyright (c) 2012-2017 Marcio Pessoa",  // Owner
            "undefined. There is NO WARRANTY.",  // License
-           "http://pessoa.eti.br/",  // Website
+           "https://github.com/marcio-pessoa/x2",  // Website
            "Marcio Pessoa <marcio.pessoa@gmail.com>");  // Contact
 
 // OK LED (Status LED)
