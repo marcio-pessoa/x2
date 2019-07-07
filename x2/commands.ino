@@ -25,33 +25,33 @@ void CommandM100(char letter = 0) {
     echoln(F("G01\tLinear interpolation"));
     echoln(F("G02\tCircular interpolation, clockwise"));
     echoln(F("G03\tCircular interpolation, counterclockwise"));
-    // echoln(F("G06\tDemonstratio mode"));
+    echoln(F("G06\tDemonstratio mode"));
     echoln(F("G28\tHome axes"));
     echoln(F("G90\tAbsolute programming"));
     echoln(F("G91\tIncremental programming"));
-    // echoln(F("G132\tCalibrate axes"));
+    echoln(F("G132\tCalibrate axes"));
   }
   if (letter == 'M' or letter == 0) {
     echoln(F("M0\tCompulsory stop"));
-    // echoln(F("M15\tSystem info"));
-    // echoln(F("M17\tAttach motors"));
-    // echoln(F("M18\tDetach motors; same as M84"));
-    // echoln(F("M70\tLaser status"));
-    // echoln(F("M03\tLaser on"));
-    // echoln(F("M05\tLaser off"));
+    echoln(F("M15\tSystem info"));
+    echoln(F("M17\tAttach motors"));
+    echoln(F("M18\tDetach motors; same as M84"));
+    echoln(F("M70\tLaser status"));
+    echoln(F("M03\tLaser on"));
+    echoln(F("M05\tLaser off"));
     echoln(F("M80\tPower on"));
     echoln(F("M81\tPower off"));
-    // echoln(F("M86\tAxes information"));
-    // echoln(F("M87\tIs all done?"));
-    // echoln(F("M88\tDistance measure"));
-    // echoln(F("M89\tMemory information"));
-    // echoln(F("M90\tFan information"));
-    // echoln(F("M91\tTemperature information"));
-    // echoln(F("M92\tSystem information"));
-    // echoln(F("M99\tReset system"));
-    // echoln(F("M100\tThis help message"));
-    // echoln(F("M111\tDebug mode"));
-    // echoln(F("M124\tStop all axes"));
+    echoln(F("M86\tAxes information"));
+    echoln(F("M87\tIs all done?"));
+    echoln(F("M88\tDistance measure"));
+    echoln(F("M89\tMemory information"));
+    echoln(F("M90\tFan information"));
+    echoln(F("M91\tTemperature information"));
+    echoln(F("M92\tSystem information"));
+    echoln(F("M99\tReset system"));
+    echoln(F("M100\tThis help message"));
+    echoln(F("M111\tDebug mode"));
+    echoln(F("M124\tStop all axes"));
   }
 }
 
