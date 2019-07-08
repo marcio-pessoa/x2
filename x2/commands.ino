@@ -23,9 +23,9 @@ void CommandM100(char letter = 0) {
   if (letter == 'G' or letter == 0) {
     echoln(F("G00\tRapid positioning"));
     echoln(F("G01\tLinear interpolation"));
-    echoln(F("G02\tCircular interpolation, clockwise"));
-    echoln(F("G03\tCircular interpolation, counterclockwise"));
-    echoln(F("G06\tDemonstratio mode"));
+    // echoln(F("G02\tCircular interpolation, clockwise"));
+    // echoln(F("G03\tCircular interpolation, counterclockwise"));
+    echoln(F("G06\tDemonstration mode"));
     echoln(F("G28\tHome axes"));
     echoln(F("G90\tAbsolute programming"));
     echoln(F("G91\tIncremental programming"));

@@ -26,7 +26,7 @@ FOOTER='footer.gcode'
 DISCLA=';oddscanner 0.01b (2017-03-09)
 ;Copyright (c) 2013-2017 Marcio Pessoa
 ;License: undefined. There is NO WARRANTY.
-;Website: http://pessoa.eti.br/
+;Website: https://github.com/marcio-pessoa/x2
 ;Contact: Marcio Pessoa <marcio.pessoa@gmail.com>'
 
 # User input variables
