@@ -1,21 +1,21 @@
 /* commands.ino, x2 Mark I - Two Axes Platform, Arduino commands sketch file
- * 
+ *
  * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
 
 /* CommandM100
- * 
+ *
  * Description
  *   Shows help messages.
- * 
+ *
  *   CommandM100()
- * 
+ *
  * Parameters
  *   letter: The command initial letter. It's used to display a specific help
  *           about a letter.
  *           If letter equals to zero, all help messages will be shown.
- * 
+ *
  * Returns
  *   void
  */
@@ -55,16 +55,16 @@ void CommandM100(char letter = 0) {
   }
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -83,29 +83,29 @@ bool CommandM80a(bool display = true) {
   }
   if (debug_mode) {
     echoln(String("\n") +
-           "  " + 
+           "  " +
            power.nameRead() + ": " + (power.status() ? "On" : "Off") + "\n" +
            "  DC current: " + (digitalRead(power_sensor_pin) ? "Yes" : "No"));
   }
   return !digitalRead(power_sensor_pin);
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
 bool CommandM80() {
   power.set(HIGH);
-  for (byte i=0; i<10; i++) {
+  for (byte i = 0; i < 10; i++) {
     delay(100);
     if (!CommandM80a(false)) {  // Power status
       standby.reset();
@@ -115,21 +115,21 @@ bool CommandM80() {
   return true;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
 bool CommandM81() {
-  CommandM0();  // Compulsory stop
+  CommandM0();   // Compulsory stop
   CommandM72();  // Laser off
   standby_done = true;
   standby_status = false;
@@ -139,16 +139,16 @@ bool CommandM81() {
   return power.status();
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -157,16 +157,16 @@ void CommandG90() {
   y_axis.absolute(true);
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -175,16 +175,16 @@ void CommandG91() {
   y_axis.absolute(false);
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -197,16 +197,16 @@ void CommandM99() {
   x2.reset();
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -217,16 +217,16 @@ bool CommandM71() {
   return !power.status() and !digitalRead(laser_pin);
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -235,16 +235,16 @@ bool CommandM72() {
   return power.status() and digitalRead(laser_pin);
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -253,17 +253,17 @@ void CommandM70() {
 }
 
 /* CommandG0
- * 
+ *
  * Description
  *   Rapid positioning.
- * 
+ *
  *   CommandG0(100, -80, -10)
- * 
+ *
  * Parameters
  *   x: x axis position.
  *   y: y axis position.
  *   z: z axis position.
- * 
+ *
  * Returns
  *   false: OK
  *   true: Position limit has exceeded
@@ -294,18 +294,18 @@ bool CommandG0(float x, float y, float z) {
 }
 
 /* CommandG1
- * 
+ *
  * Description
  *   Linear interpolation.
  *   Moves axes from B point to C point using hypotenuse line.
- * 
+ *
  *   CommandG1(100, -80, -0.3)
- * 
+ *
  *   Math explanation
  *     Quando viajamos entre o ponto B e C (no caso das linhas com ângulos), a
  *     velocidade do cursor b e c não podem ser iguais, do contrário teremos
  *     como resultado sempre um triângulo equilátero.
- * 
+ *
  *        B
  *         |\
  *         | \
@@ -317,7 +317,7 @@ bool CommandG0(float x, float y, float z) {
  *        A---------C
  *             b
  *             CO
- * 
+ *
  *     Para formar um triângulo retângulo e dessa forma obter uma linha de
  *     hipotenusa perfeita, é necessário compensar a velocidade dos cursores
  *     b e c para que ambos cheguem ao destino simultaneamente.
@@ -331,29 +331,29 @@ bool CommandG0(float x, float y, float z) {
  *     de tempo maior será a precisão do momento de chegada dos cursores b e c,
  *     consequentemente a linha da hipotenusa (H) será desenhada com maior
  *     fidelidade.
- * 
+ *
  *   Computing
  *     Levando em consideração um triangulo onde CA=4cm, CO=3cm, e a base de
  *     tempo T=2ms, qual é o fator de tempo que deve ser aplicado ao cursor b
  *     para que chegue ao destino simultaneamente com o cursor c?
- * 
+ *
  *   Proportion (cross-multiplication)
  *     CA * T -> CA * T
  *     CO * x -> CA * T
- * 
+ *
  *   So
  *     x = (CA * T) / CO
- * 
+ *
  *   Example
  *     x = (4 * 2) / 3
  *     x = 8 / 3
  *     x = 2.66666666666666666666ms
- * 
+ *
  * Parameters
  *   x: x axis position.
  *   y: y axis position.
  *   z: z axis (tool) position.
- * 
+ *
  * Returns
  *   bool: 0 - No error.
  *         1 - Position limit has exceeded.
@@ -367,18 +367,18 @@ bool CommandG1(float x, float y, float z) {
   //
   if (abs(y - y_axis.positionRead()) > abs(x - x_axis.positionRead())) {
     x_axis.delayWrite(round((float)(abs(y - y_axis.positionRead()) *
-                                        y_axis.delayRead()) /
-                                    abs(x - x_axis.positionRead())));
+                                    y_axis.delayRead()) /
+                            abs(x - x_axis.positionRead())));
   }
   if (abs(x - x_axis.positionRead()) > abs(y - y_axis.positionRead())) {
     y_axis.delayWrite(round((float)(abs(x - x_axis.positionRead()) *
-                                        x_axis.delayRead()) / 
-                                    abs(y - y_axis.positionRead())));
+                                    x_axis.delayRead()) /
+                            abs(y - y_axis.positionRead())));
   }
   if (debug_mode) {
     CommandM86();  // Axes information
   }
-  // 
+  //
   if (x != FLIMIT) {
     done = false;
     x_axis.positionWrite(x);
@@ -399,20 +399,20 @@ bool CommandG1(float x, float y, float z) {
 }
 
 /* CommandG2
- * 
+ *
  * Description
  *   Circular interpolation, clockwise.
- * 
+ *
  *   CommandG2(x, y, i, j)
- * 
+ *
  *   The start position is the current position.
- * 
+ *
  * Parameters
  *   int x: The last x position of the tool
  *   int y: The last y position of the tool
  *   int i: The horizontal position of the center
  *   int j: The vertical position of the center
- * 
+ *
  * Returns
  *   false: OK
  *   true: Invalid input
@@ -427,15 +427,15 @@ bool CommandG2(int x, int y, int i, int j) {
 }
 
 /* CommandG3
- * 
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -450,16 +450,16 @@ bool CommandG3(int x, int y) {
   return false;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -477,16 +477,16 @@ bool CommandG28() {
   y_axis.positionWrite(y_axis.parkRead());
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -497,16 +497,16 @@ bool CommandM124() {
   return false;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -523,16 +523,16 @@ bool CommandG6(int seconds) {
   return true;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -548,7 +548,7 @@ bool CommandG132() {
   echo(".");
   // Go to limit
   int i = 0;
-  for (i=0; i<=1800; i++) {
+  for (i = 0; i <= 1800; i++) {
     if (i <= 1800) {
       x_stepper.step(1, BACKWARD, INTERLEAVE);
     }
@@ -559,7 +559,7 @@ bool CommandG132() {
   }
   echo(".");
   // Come back to center
-  for (i=0; i<=840; i++) {
+  for (i = 0; i <= 840; i++) {
     if (i <= 840) {
       x_stepper.step(1, FORWARD, INTERLEAVE);
     }
@@ -576,42 +576,42 @@ bool CommandG132() {
   return false;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   Axes information.
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
 bool CommandM86() {
   echoln(String("Axes position: ") +
-                "(" + String(x_axis.positionRead()) + ", " +
-                      String(y_axis.positionRead()) + ")");
+         "(" + String(x_axis.positionRead()) + ", " +
+         String(y_axis.positionRead()) + ")");
   echoln(String("Axes delay: ") +
-                "(" + String(x_axis.delayRead()) + ", " +
-                      String(y_axis.delayRead()) + ")");
+         "(" + String(x_axis.delayRead()) + ", " +
+         String(y_axis.delayRead()) + ")");
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
-bool CommandM88(bool sensor=false) {
+bool CommandM88(bool sensor = false) {
   float measure;
   CommandM72();  // Laser off
   switch (sensor) {
@@ -624,21 +624,21 @@ bool CommandM88(bool sensor=false) {
       break;
   }
   echoln(String(x_axis.positionRead()) + "," +
-                y_axis.positionRead() + "," +
-                String(measure));
+         y_axis.positionRead() + "," +
+         String(measure));
   return false;
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   Temperature information.
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -663,16 +663,16 @@ bool CommandM91() {
   }
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   Fan information.
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -691,15 +691,15 @@ bool CommandM90() {
 }
 
 /* CommandM89
- * 
+ *
  * Description
  *   Memory information.
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -708,13 +708,13 @@ bool CommandM89() {
   int free = freeMemory();
   int used = total - free;
   int percent = (float)used * 100 / total;
-  // 
+  //
   Alarm memory(75, 85);
   memory.nameWrite("Memory");
   memory.unitWrite("%");
   memory.check(percent);
-  // 
-  echoln(memory.nameRead() + " (" + memory.status_name() + "): " + 
+  //
+  echoln(memory.nameRead() + " (" + memory.status_name() + "): " +
          percent + memory.unitRead() + " used");
   if (debug_mode) {
     echoln("  SRAM:\t" + String(total) + " B\n" +
@@ -725,38 +725,38 @@ bool CommandM89() {
   }
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
 void CommandM15() {
-  CommandM92();  // System information
-  CommandM89();  // Memory information
+  CommandM92();   // System information
+  CommandM89();   // Memory information
   CommandM80a();  // Power status
-  CommandM91();  // Temperature information
-  CommandM90();  // Fan information
-  CommandM86();  // Axes information
+  CommandM91();   // Temperature information
+  CommandM90();   // Fan information
+  CommandM86();   // Axes information
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   System information.
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -772,15 +772,15 @@ void CommandM92() {
 }
 
 /* CommandM0
- * 
+ *
  * Description
  *   Compulsory stop.
- * 
+ *
  *   CommandM0()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -792,15 +792,15 @@ bool CommandM0() {
 }
 
 /* CommandM111
- * 
+ *
  * Description
  *   Changes debug mode on or off.
- * 
+ *
  *   CommandM111()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
@@ -809,21 +809,21 @@ void CommandM111() {
   echoln("DEBUG: " + String(debug_mode ? F("on") : F("off")));
 }
 
-/* 
- * 
+/*
+ *
  * Description
  *   .
- * 
+ *
  *   ()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
 void Command0() {
-  echoln(F("Unknown command")); 
+  echoln(F("Unknown command"));
 }
 
 bool CommandM17() {
@@ -831,15 +831,15 @@ bool CommandM17() {
 }
 
 /* CommandM18
- * 
+ *
  * Description
  *   Detaches stepper motors.
- * 
+ *
  *   CommandM18()
- * 
+ *
  * Parameters
  *   none
- * 
+ *
  * Returns
  *   void
  */
