@@ -1,5 +1,5 @@
 /* config.h, x2 Mark I - Two Axes Platform, Arduino project config file
- * 
+ *
  * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
@@ -40,8 +40,8 @@ const byte random_Seed_pin = lm35_pin;
 
 // Timers
 const byte health_check_timer = 2;  // seconds
-const byte sensors_timer = 2;  // seconds
-const byte standby_timer = 1;  // minute
+const byte sensors_timer = 2;       // seconds
+const byte standby_timer = 1;       // minute
 
 // System status (initial state)
 byte general_status = UNKNOWN;
@@ -55,5 +55,5 @@ const unsigned long serial_speed = 115200;
 // Move done
 bool done = true;
 
-// 
+//
 const float FLIMIT = 340282350000000000000000000000000000000;
