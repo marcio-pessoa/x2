@@ -1,5 +1,5 @@
 /* handlers.ino, x2 Mark I - Two Axes Platform, Arduino handlers sketch file
- * 
+ *
  * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
@@ -56,7 +56,7 @@ bool AxesHandler() {
       break;
     }
   }
-  // 
+  //
   if (isAllDone() and done == false) {
     done = true;
     status(false);
@@ -66,7 +66,7 @@ bool AxesHandler() {
 }
 
 void DemonstrationHandler() {
-  if(!demonstration_period.check()) {
+  if (!demonstration_period.check()) {
     if (x_axis.isDone()) {
       x_axis.positionWrite(random(x_axis.hardMinimumRead(), x_axis.hardMaxiumRead()));
     }
@@ -80,8 +80,8 @@ void HealthCheckHandler() {
   if (health_check.check()) {
     // Set fan speed
     fan_control.writeSpeed(map(constrain(temperature.valueRead(), 20, 50),  // temperature
-                               20, 50,    // From (minimum and maximum)
-                               0, 100));  // To (minimum and maximum)
+                               20, 50,                                      // From (minimum and maximum)
+                               0, 100));                                    // To (minimum and maximum)
     // Power off on high temperature
     if (temperature.status() == CRITICAL) {
       if (debug_mode) CommandM91();
@@ -97,16 +97,13 @@ void HealthCheckHandler() {
     if (temperature.status() == OK and
         fan.status() == OK) {
       general_status = OK;
-    }
-    else if (temperature.status() == WARNING or
-             fan.status() == WARNING) {
+    } else if (temperature.status() == WARNING or
+               fan.status() == WARNING) {
       general_status = WARNING;
-    }
-    else if (temperature.status() == CRITICAL or
-             fan.status() == CRITICAL) {
+    } else if (temperature.status() == CRITICAL or
+               fan.status() == CRITICAL) {
       general_status = CRITICAL;
-    }
-    else {
+    } else {
       general_status = UNKNOWN;
     }
     // Notify status via LEDs
@@ -129,7 +126,7 @@ void HealthCheckHandler() {
         critical_led.enable();
         break;
       }
-      case UNKNOWN: 
+      case UNKNOWN:
       default: {
         ok_led.enable();
         warning_led.enable();
