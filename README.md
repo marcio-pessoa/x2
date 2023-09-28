@@ -1,6 +1,7 @@
 # x2 Mark I - Two Axes Platform
 
 ## Videos
+
 Watch this projects videos on [YouTube Playlist].
 
 [Change log](CHANGELOG.md)
@@ -9,52 +10,56 @@ Watch this projects videos on [YouTube Playlist].
 
 [Kanban](KANBAN.md)
 
-# Mechanics
+## Mechanics
 
-# Electronics
+## Electronics
 
-## Arduino
+### Arduino
+
 Technical specifications:
+
 - Model: [Arduino Uno] R3
 
-### Pin designation table
- id | pin |   type    | direction |               description                
-----|-----|-----------|-----------|--------------------------------------------
-  0 |   0 | digital   | input     | Serial communication                     
-  1 |   1 | digital   | output    | Serial communication                     
-  2 |   0 | interrupt | input     | Fan speed sensor                         
-  3 |   3 | digital   | output    | Stepper 1 (activation/speed control)     
-  4 |   4 | digital   | output    | Stepper drive                            
-  5 |   5 | digital   | output    | Stepper 2 (activation/speed control)     
-  6 |   6 | digital   | output    | Stepper 2 (activation/speed control)     
-  7 |   7 | digital   | output    | Stepper drive                            
-  8 |   8 | digital   | output    | Stepper drive                            
-  9 |   9 | PWM       | output    | X2_INTERFACE_D1 (PWM)                    
- 10 |  10 | PWM       | output    | Fan speed control                        
- 11 |  11 | digital   | output    | Stepper 1 (activation/speed control)     
- 12 |  12 | digital   | output    | Stepper drive                            
- 13 |  13 | digital   | output    | OK LED (status LED)                      
- 14 |   0 | analog    | input     | Temperature sensor (step motor driver)   
- 15 |   1 | A/D       | I/O       | X2_INTERFACE_D0 and X2_INTERFACE_A0      
- 16 |   2 | digital   | output    | Critical LED                             
- 17 |   3 | digital   | input     | Warning LED                              
- 18 |   4 | digital   | output    | Power relay                              
- 19 |   5 | digital   | input     | Power supply DC detection                
+#### Pin designation table
 
-### x2 interface pin designation table for Deep viewer
- id |      pin        |                  Deep viewer pins                    
+ id | pin |   type    | direction |               description
+----|-----|-----------|-----------|--------------------------------------------
+  0 |   0 | digital   | input     | Serial communication
+  1 |   1 | digital   | output    | Serial communication
+  2 |   0 | interrupt | input     | Fan speed sensor
+  3 |   3 | digital   | output    | Stepper 1 (activation/speed control)
+  4 |   4 | digital   | output    | Stepper drive
+  5 |   5 | digital   | output    | Stepper 2 (activation/speed control)
+  6 |   6 | digital   | output    | Stepper 2 (activation/speed control)
+  7 |   7 | digital   | output    | Stepper drive
+  8 |   8 | digital   | output    | Stepper drive
+  9 |   9 | PWM       | output    | X2_INTERFACE_D1 (PWM)
+ 10 |  10 | PWM       | output    | Fan speed control
+ 11 |  11 | digital   | output    | Stepper 1 (activation/speed control)
+ 12 |  12 | digital   | output    | Stepper drive
+ 13 |  13 | digital   | output    | OK LED (status LED)
+ 14 |   0 | analog    | input     | Temperature sensor (step motor driver)
+ 15 |   1 | A/D       | I/O       | X2_INTERFACE_D0 and X2_INTERFACE_A0
+ 16 |   2 | digital   | output    | Critical LED
+ 17 |   3 | digital   | input     | Warning LED
+ 18 |   4 | digital   | output    | Power relay
+ 19 |   5 | digital   | input     | Power supply DC detection
+
+#### x2 interface pin designation table for Deep viewer
+
+ id |      pin        |                  Deep viewer pins
 ----|-----------------|--------------------------------------------------------
-  1 | 1               | +5 Vcc                                               
-  2 | X2_INTERFACE_D1 | Ultrasonic sensor echo pin                           
-  3 | X2_INTERFACE_D0 | Ultrasonic sensor trigger pin / IDMS pin             
-  4 | 4               | GND                                                  
+  1 | 1               | +5 Vcc
+  2 | X2_INTERFACE_D1 | Ultrasonic sensor echo pin
+  3 | X2_INTERFACE_D0 | Ultrasonic sensor trigger pin / IDMS pin
+  4 | 4               | GND
 
                                  +-----+
     +----[PWR]-------------------| USB |--+
     |                            +-----+  |
     |         GND/RST2  [ ][ ]            |
-    |       MOSI2/SCK2  [ ][ ]  A5/SCL[ ] |   C5 
-    |          5V/MISO2 [ ][ ]  A4/SDA[ ] |   C4 
+    |       MOSI2/SCK2  [ ][ ]  A5/SCL[ ] |   C5
+    |          5V/MISO2 [ ][ ]  A4/SDA[ ] |   C4
     |                             AREF[ ] |
     |                              GND[x] |
     | [ ]N/C                    SCK/13[x] |   B5
@@ -76,11 +81,11 @@ Technical specifications:
     |  UNO_R3    GND MOSI 5V  ____________/
     \_______________________/
 
-Source: http://busyducks.com/ascii-art-arduinos
+Source: <http://busyducks.com/ascii-art-arduinos>
 
-# Software
+## Software
 
-## Odd Scanner
+### Odd Scanner
 
 Change to `oddscanner` work directory:
 
@@ -93,13 +98,14 @@ Use `oddscanner` to generate a G-code file:
 ``` bash
 ./oddscanner 100 80 > example.gcode
 ```
-  
+
 Where:
+
 - `oddscanner`: program file
 - `100`: width
 - `80`: height
 - `example.gcode`: output G-code file
-  
+
 After file generation, use xC to run G-code file:
 
 ``` bash
