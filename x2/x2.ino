@@ -1,38 +1,39 @@
 /* x2.ino, x2 Mark I - Two Axes Platform, Arduino main sketch file
- * 
+ *
  * This sketch was developed and tested on: Arduino Uno
  * To work on other Arduino models, some adaptations may be necessary.
- * 
+ *
  * Author: Márcio Pessoa <marcio.pessoa@gmail.com>
  * Contributors: none
  */
 
-#include <Arduino.h>      // Arduino - Main library
-#include <Project.h>      // Marcio Pessoa - Basic project definitions
-#include <Blinker.h>      // Marcio Pessoa - Blink leds nicely
-#include <Timer.h>        // Marcio Pessoa - Timer library with nice features
-#include <Alarm.h>        // Marcio Pessoa - Manage alarms
-#include <Switch.h>       // Marcio Pessoa - Switch manipulation
-#include <Fan.h>          // Marcio Pessoa - Fan speed control
-#include <Temperature.h>  // Marcio Pessoa - Temperature Sensors
-#include <Axis.h>         // Marcio Pessoa - Motor axis
-#include <Ultrasonic.h>   // Marcio Pessoa - Ultrasonic distance measuring
-#include <IDMS.h>         // Marcio Pessoa - Infrared distance measuring
-#include "config.h"       // Marcio Pessoa - Configuration
 #include <AFMotor.h>      // Adafruit - Motor Shield
+#include <Alarm.h>        // Marcio Pessoa - Manage alarms
+#include <Arduino.h>      // Arduino - Main library
+#include <Axis.h>         // Marcio Pessoa - Motor axis
+#include <Blinker.h>      // Marcio Pessoa - Blink leds nicely
+#include <Fan.h>          // Marcio Pessoa - Fan speed control
+#include <IDMS.h>         // Marcio Pessoa - Infrared distance measuring
+#include <Project.h>      // Marcio Pessoa - Basic project definitions
+#include <Switch.h>       // Marcio Pessoa - Switch manipulation
+#include <Temperature.h>  // Marcio Pessoa - Temperature Sensors
+#include <Timer.h>        // Marcio Pessoa - Timer library with nice features
+#include <Ultrasonic.h>   // Marcio Pessoa - Ultrasonic distance measuring
+
+#include "config.h"  // Marcio Pessoa - Configuration
 // #include <SharpIR.h>      // Unoficial - Infrared distance measuring sensor
-#include <MemoryFree.h>   // 
+#include <MemoryFree.h>  //
 
 // Project definitions
-Project x2("x2",  // Platform
-           "I",  // Mark
-           "Two Axes Platform",  // Name
-           "0.18b",  // Version
-           "2017-08-19",  // Version date
-           "1",  // Serial number
-           "Copyright (c) 2012-2017 Marcio Pessoa",  // Owner
-           "undefined. There is NO WARRANTY.",  // License
-           "https://github.com/marcio-pessoa/x2",  // Website
+Project x2("x2",                                        // Platform
+           "I",                                         // Mark
+           "Two Axes Platform",                         // Name
+           "0.18b",                                     // Version
+           "2017-08-19",                                // Version date
+           "1",                                         // Serial number
+           "Copyright (c) 2012-2017 Marcio Pessoa",     // Owner
+           "undefined. There is NO WARRANTY.",          // License
+           "https://github.com/marcio-pessoa/x2",       // Website
            "Marcio Pessoa <marcio.pessoa@gmail.com>");  // Contact
 
 // OK LED (Status LED)
@@ -54,10 +55,10 @@ Alarm fan(85,   // Warning
 
 // Teperature sensor
 Temperature lm35;
-Alarm temperature(60,   // Maximum warning
-                  70,   // Maximum critical
-                  10,   // Minimum warning
-                   5);  // Minimum critical
+Alarm temperature(60,  // Maximum warning
+                  70,  // Maximum critical
+                  10,  // Minimum warning
+                  5);  // Minimum critical
 
 // Check timer
 Timer health_check(health_check_timer * 1000);
